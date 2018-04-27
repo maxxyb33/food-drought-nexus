@@ -16,7 +16,7 @@
 
 
 *A description of the project:*\
-Our map-based website will track 5 cereal food crop products’ movement around the world.  We will use data from FAO to feed a migration map (imports and exports by country, per crop), with an overarching coordinated-view that links active clicks to graphs of the data.  An underlying heatmap layer of drought-affected areas will tie food production/consumption to climatic events, and to see how the situation has evolved over time, we will apply a time-slider to our map.  Lastly, we hope to find a way to optimize the data on the fly, so that the website not only shows historical, recorded data, but may also be able to project trends into the future.\
+Our map-based website will track 5 cereal food crop products’ movement around the world.  We will use data from FAO to feed a migration map (imports and exports by country, per crop), with an overarching coordinated-view that links active clicks to graphs of the data.  An underlying heatmap layer of drought-affected areas will tie food production/consumption to climatic events, and to see how the situation has evolved over time, we will apply a time-slider to our map.  Lastly, we hope to find a way to optimize the data on the fly, so that the website not only shows historical, recorded data, but may also be able to project trends into the future.
 
 
 *Links to the data:*
