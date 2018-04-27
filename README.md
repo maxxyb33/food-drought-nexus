@@ -24,7 +24,7 @@ Our map-based website will track 5 cereal food crop products’ movement around 
 + [World Drought Data](http://spei.csic.es/database.html)
 
 
-*Interface Design References*
+*Interface Design References:*\
 Coordinated view, similar to visuals of:
 + [FAOSTAT website](http://www.fao.org/faostat/en/#data/QC/visualize)
 + [World migration map](Migrationsmap.net)
