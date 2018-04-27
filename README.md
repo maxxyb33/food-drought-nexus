@@ -20,7 +20,7 @@ Our map-based website will track 5 cereal food crop products’ movement around 
 
 *Links to the data:*
 + [FAO World Cereal Food Production Data](http://www.fao.org/faostat/en/#data/QC/visualize "FAO Crop Map")
-+ [World Drought Data](http://spei.csic.es/database.html "Drought Data“）
++ [World Drought Data](http://spei.csic.es/database.html)
 
 
 *Interface Design References*
