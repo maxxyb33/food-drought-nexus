@@ -1,8 +1,8 @@
-###### world-food-map-nexus-proposal######
-#Proposal
-##for GEOG4/572 project
+###### world-food-map-nexus-proposal ######
+## Proposal
+### for GEOG4/572 project
 
-#World Food-Drought Nexus#
+# World Food-Drought Nexus #
 
 *Group members:* 
 **Bryce Bradshaw, Murthy Ganti, Max Boath**
