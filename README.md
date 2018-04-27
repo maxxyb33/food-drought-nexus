@@ -1,6 +1,6 @@
 ###### world-food-map-nexus-proposal######
-##Proposal##
-###for GEOG4/572 project###
+#Proposal
+##for GEOG4/572 project
 
 #World Food-Drought Nexus#
 
