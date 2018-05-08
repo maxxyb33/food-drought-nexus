@@ -35,3 +35,5 @@ Coordinated view, similar to visuals of:
 
 # INTERFACE SKETCH #
 ![Interface Sketch](img/webdesign.PNG "Interface Sketch")
+
+Our food-drought-nexus website will feature a landing page with Navbar, photo/video, and map.  Links from the Navbar to other pages will emphasize certain aspects of the global cereals trade through interactive geovisual charts, graphs, and maps.  Finally, an About page will detail the project motivations, implications, dataset descriptions/credits, class description, and information about the page creators.
