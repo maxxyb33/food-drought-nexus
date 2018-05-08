@@ -34,4 +34,4 @@ Coordinated view, similar to visuals of:
 
 
 # INTERFACE SKETCH #
-![Interface Sketch](Interface Sketch/webdesign.png "Interface Sketch")
+![Interface Sketch](img/webdesign.PNG "Interface Sketch")
