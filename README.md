@@ -31,14 +31,14 @@ Coordinated view, similar to visuals of:
 + fooddroughtnexus.com
 + cerealmigrations.com
 
-******
+<div></div>
 
 # INTERFACE SKETCH #
 ![Interface Sketch](img/webdesign.PNG "Interface Sketch")
 
 Our food-drought-nexus website will feature a landing page with Navbar, photo/video, and map.  Links from the Navbar to other pages will emphasize certain aspects of the global cereals trade through interactive geovisual charts, graphs, and maps.  Finally, an About page will detail the project motivations, implications, dataset descriptions/credits, class description, and information about the page creators.
 
-*******
+<div></div>
 
 
 # DESIGN SCHEME #
@@ -48,7 +48,7 @@ Our food-drought-nexus website will feature a landing page with Navbar, photo/vi
 
 ### COLORS:
 + [Color Link](https://coolors.co/fbf9cf-f7ebb2-f3d885-ffcd5c-cc8740)
-+ ![Color Scheme](img/colors.PNG "Color Scheme")
++ ![Color Scheme](img/colors.png "Color Scheme")
 
 ### ICONS:
 + Globe: i class="fas fa-globe"
