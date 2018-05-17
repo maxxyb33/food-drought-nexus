@@ -48,18 +48,18 @@ Our food-drought-nexus website will feature a landing page with Navbar, photo/vi
 
 ### COLORS:
 ![Color Scheme](img/colors.png "Color Scheme")
-+ [Color Link](https://coolors.co/fbf9cf-f7ebb2-f3d885-ffcd5c-cc8740)=
++ [Color Link](https://coolors.co/fbf9cf-f7ebb2-f3d885-ffcd5c-cc8740)
 
 ### ICONS:
 + Globe: `<i class="fas fa-globe"></i>`
-+ Trade arrow: i class="far fa-arrow-alt-circle-right"
-+ Charts: i class="fas fa-chart-bar"
-+ Map pin: i class="fas fa-map-pin"
-+ Truck: i class="fas fa-truck"
-+ Information: i class="fas fa-info-circle"
-+ Site map: i class="fas fa-sitemap"
-+ $: i class="fas fa-dollar-sign"
-+ Database: i class="fas fa-database"
++ Trade arrow: `<i class="far fa-arrow-alt-circle-right"></i>`
++ Charts: `<i class="fas fa-chart-bar"></i>`
++ Map pin: `<i class="fas fa-map-pin"></i>`
++ Truck: `<i class="fas fa-truck"></i>`
++ Information: `<i class="fas fa-info-circle"></i>`
++ Site map: `<i class="fas fa-sitemap"></i>`
++ $: `<i class="fas fa-dollar-sign"></i>`
++ Database: `<i class="fas fa-database"></i>`
 
 
 ### MULTIMEDIA
