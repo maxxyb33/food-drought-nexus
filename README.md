@@ -31,9 +31,37 @@ Coordinated view, similar to visuals of:
 + fooddroughtnexus.com
 + cerealmigrations.com
 
-
+<div></div>
 
 # INTERFACE SKETCH #
 ![Interface Sketch](img/webdesign.PNG "Interface Sketch")
 
 Our food-drought-nexus website will feature a landing page with Navbar, photo/video, and map.  Links from the Navbar to other pages will emphasize certain aspects of the global cereals trade through interactive geovisual charts, graphs, and maps.  Finally, an About page will detail the project motivations, implications, dataset descriptions/credits, class description, and information about the page creators.
+
+<div></div>
+
+
+# DESIGN SCHEME #
+
+### FONT:
++ Avenir Rounded /Nunito, Sans-serif
+
+### COLORS:
++ [Color Link](https://coolors.co/fbf9cf-f7ebb2-f3d885-ffcd5c-cc8740)
++ ![Color Scheme](img/colors.PNG "Color Scheme")
+
+### ICONS:
++ Globe: <i class="fas fa-globe"></i>
++ Trade arrow: <i class="far fa-arrow-alt-circle-right"></i>
++ Charts: <i class="fas fa-chart-bar"></i>
++ Map pin: <i class="fas fa-map-pin"></i>
++ Truck: <i class="fas fa-truck"></i>
++ Information: <i class="fas fa-info-circle"></i>
++ Site map: <i class="fas fa-sitemap"></i>
++ $: <i class="fas fa-dollar-sign"></i>
++ Database: <i class="fas fa-database"></i>
+
+
+### MULTIMEDIA
++ ![Landing Page Video](farmvidpic.png "Landing Page Video")
++ [Link to Video on Pexels Video](https://videos.pexels.com/videos/video-footage-of-a-farm-857072)
