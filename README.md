@@ -48,7 +48,7 @@ Our food-drought-nexus website will feature a landing page with Navbar, photo/vi
 
 ### COLORS:
 + [Color Link](https://coolors.co/fbf9cf-f7ebb2-f3d885-ffcd5c-cc8740)
-![Color Scheme](img/colors.PNG "Color Scheme")
++ ![Color Scheme](img/colors.PNG "Color Scheme")
 
 ### ICONS:
 + Globe: i class="fas fa-globe"
@@ -63,5 +63,5 @@ Our food-drought-nexus website will feature a landing page with Navbar, photo/vi
 
 
 ### MULTIMEDIA
-![Landing Page Video](farmvidpic.png "Landing Page Video")
++ ![Landing Page Video](farmvidpic.png "Landing Page Video")
 + [Link to Video on Pexels Video](https://videos.pexels.com/videos/video-footage-of-a-farm-857072)
