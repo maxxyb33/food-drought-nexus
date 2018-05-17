@@ -46,14 +46,14 @@ Our food-drought-nexus website will feature a landing page with Navbar, photo/vi
 
 # DESIGN SCHEME #
 
-### FONT:
+### FONT
 + Avenir Rounded /Nunito, Sans-serif
 
-### COLORS:
+### COLORS
 ![Color Scheme](img/colors.png "Color Scheme")
 + [Color Link](https://coolors.co/fbf9cf-f7ebb2-f3d885-ffcd5c-cc8740)
 
-### ICONS:
+### ICONS
 + Globe: `<i class="fas fa-globe"></i>`
 + Trade arrow: `<i class="far fa-arrow-alt-circle-right"></i>`
 + Charts: `<i class="fas fa-chart-bar"></i>`
