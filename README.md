@@ -47,11 +47,11 @@ Our food-drought-nexus website will feature a landing page with Navbar, photo/vi
 + Avenir Rounded /Nunito, Sans-serif
 
 ### COLORS:
-+ [Color Link](https://coolors.co/fbf9cf-f7ebb2-f3d885-ffcd5c-cc8740)
-+ ![Color Scheme](img/colors.png "Color Scheme")
+![Color Scheme](img/colors.png "Color Scheme")
++ [Color Link](https://coolors.co/fbf9cf-f7ebb2-f3d885-ffcd5c-cc8740)=
 
 ### ICONS:
-+ Globe: i class="fas fa-globe"
++ Globe: `<i class="fas fa-globe"></i>`
 + Trade arrow: i class="far fa-arrow-alt-circle-right"
 + Charts: i class="fas fa-chart-bar"
 + Map pin: i class="fas fa-map-pin"
@@ -63,5 +63,5 @@ Our food-drought-nexus website will feature a landing page with Navbar, photo/vi
 
 
 ### MULTIMEDIA
-+ ![Landing Page Video](img/farmvidpic.png "Landing Page Video")
+![Landing Page Video](img/farmvidpic.png "Landing Page Video")
 + [Link to Video on Pexels Video](https://videos.pexels.com/videos/video-footage-of-a-farm-857072)
