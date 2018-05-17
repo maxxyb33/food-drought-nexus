@@ -63,5 +63,5 @@ Our food-drought-nexus website will feature a landing page with Navbar, photo/vi
 
 
 ### MULTIMEDIA
-+ ![Landing Page Video](farmvidpic.png "Landing Page Video")
++ ![Landing Page Video](img/farmvidpic.png "Landing Page Video")
 + [Link to Video on Pexels Video](https://videos.pexels.com/videos/video-footage-of-a-farm-857072)
