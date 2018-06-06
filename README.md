@@ -54,6 +54,8 @@ Our food-drought-nexus website will feature a landing page with Navbar, photo/vi
 + [Color Link](https://coolors.co/fbf9cf-f7ebb2-f3d885-ffcd5c-cc8740)
 
 ### ICONS
++ Seedling: `<i class="fas fa-seedling"></i>`
++ Pagelines: `i class="fab fa-pagelines"></i>`
 + Globe: `<i class="fas fa-globe"></i>`
 + Trade arrow: `<i class="far fa-arrow-alt-circle-right"></i>`
 + Charts: `<i class="fas fa-chart-bar"></i>`
