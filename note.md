@@ -42,7 +42,32 @@ html, body, #map { width: 100%; height: 100%; margin: 0; background: #fff; }
 ### data
 
 
+#### draught map:
 
+http://drought.eng.uci.edu/js/main.js  search "mercator"
+
+```javascript
+ L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI20152_dry/tile_{z}_{x}-{y}.png').addTo(map);
+```
+json to csv
+
+
+
+#### Matrix
+
+[1] georeference
+
+[2] swoopy arrow
+
+[animation.html](animation.html)
 
 ### functions
 
+#### map
+
+#### sankey
+
+### 3D force atlas graph
+
+
+matrix

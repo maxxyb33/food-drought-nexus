@@ -72,7 +72,10 @@
 <script type="text/javascript">
     var map = L.map("map", {zoomControl: false}).setView([40, -100], 5); // deactivate the zoomControl
     // construct a base map in light color.md.
-    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png').addTo(map);
+   L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png').addTo(map);
+   L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI20152_dry/tile_{z}_{x}-{y}.png').addTo(map);
+  //  L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI20162_dry/tile_{z}_{x}-{y}.png').addTo(map);
+
 </script>
 </body>
 </html>
