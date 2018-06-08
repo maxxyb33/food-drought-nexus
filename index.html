@@ -10,40 +10,77 @@
     <link rel="shortcut icon" href="img/logo.ico?" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Quicksand|Krona+One|Titillium+Web|Righteous" rel="stylesheet">
     <style>
-        html, body { width: 100%; height: 100%; margin: 0; background: #fff; }
-        #map { width: 100%; height: 50%; margin: 0; background: #fff; }
-        .info-panel {
-            line-height: 16px;
-            width: 180px;
-            position: sticky;
-            z-index: 1000;
-            left: 10px;
-            bottom: 5px;
-            color: #070707;
-            padding: 6px 8px;
-            background: rgba(243, 243, 243, 0.73);
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            border-radius: 5px;
-        }
-        .info-panel i {
-            width: 16px;
-            height: 14px;
-            line-height: 18px;
-            float: left;
-            margin-top: 2px;
-            margin-right: 8px;
-            opacity: 0.7;
-        }
-        .info-panel p {
-            font-size: 12px;
-            line-height: 16px;
-            margin: 0;
-        }
+        html, body { width: 100%; height: 100%; margin: 0; background: #fff; font-family: Quicksand}
 
         li.dropdown:last-child .dropdown-menu {
             right: 0;
             left: auto;
         }
+
+        .video-container {
+            position: relative;
+        }
+
+        video {
+            height: auto;
+            vertical-align: middle;
+            width: 100%;
+        }
+        .overlay-desc {
+            background: rgba(0,0,0,0);
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .overlay-desc-sub {
+            background: rgba(0,0,0,0);
+            position: absolute;
+            top: 25%; right: 0; bottom: 0; left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            color: white;
+            font-family: "Righteous";
+            font-size: 8vw;
+            text-align: center;
+        }
+
+        main {
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        p {;
+            color: white;
+            font-family: Quicksand;
+            font-size: 1.1rem;
+            font-weight: bold;
+            line-height: 1.7rem;
+            text-align: center;
+        }
+        .btn{
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: #ffcd5c;
+        color: #1f1f1f;
+        font-size: 16px;
+        padding: 12px 14px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #cc8740;
+            color: #fff4be;
+        }
+
     </style>
     <!--add required stylesheets-->
     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
@@ -112,30 +149,25 @@
 <!--NAV BAR FINISHED-->
 <!--NAV BAR FINISHED-->
 
-    <div class="fullscreen display-4 d-flex justify-content-center">
-        <video width="90%" height="50%" autoplay>
-            <source src="assets/landingvid.mp4" type="video/mp4">
-            <div class="fullscreen text-center">
 
-            <h1 class="display-4 d-flex justify-content-center">FOOD</h1>
-
-
-            <small class="d-flex justify-content-center" style="color: rgba(255,255,255,0.95)">blah blah
-            </small>
-            </div>
-        </video>
-
+<div class="video-container">
+    <video autoplay loop muted>
+        <source src="assets/landingvid.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="overlay-desc">
+        <h1>Cereal Migrations</h1></div>
+    <div class="overlay-desc-sub">    <br>
+        <p>Tracking the Global Cereal Trade</p></div>
     </div>
-
-
-<div>
-    <h1 class="text-center"; style="font-family: Quicksand;">
-        Put this title overlaid ontop of movie ?
-    </h1>
+    <div><a class="btn btn-warning btn-lg float-right" href="map.html" role="button">Explore</a></div>
 </div>
 
 
 
-</script>
+
+
+
+
 </body>
 </html>
