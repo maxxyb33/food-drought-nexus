@@ -1,0 +1,176 @@
+number,country_code,country,populations
+1,41,"China, mainland",1385567
+2,100,India,1252140
+3,231,United States of America,320051
+4,101,Indonesia,249866
+5,21,Brazil,200362
+6,165,Pakistan,182143
+7,159,Nigeria,173615
+8,16,Bangladesh,156595
+9,185,Russian Federation,142834
+10,110,Japan,127144
+11,138,Mexico,122332
+12,171,Philippines,98394
+13,238,Ethiopia,94101
+14,237,Viet Nam,91680
+15,79,Germany,82727
+16,59,Egypt,82056
+17,102,Iran (Islamic Republic of),77447
+18,223,Turkey,74933
+19,216,Thailand,67011
+20,68,France,64291
+21,229,United Kingdom,63384
+22,106,Italy,60990
+23,28,Myanmar,53259
+24,202,South Africa,52776
+25,117,Republic of Korea,49263
+26,215,United Republic of Tanzania,49253
+27,44,Colombia,48321
+28,203,Spain,46927
+29,230,Ukraine,45239
+30,114,Kenya,44354
+31,9,Argentina,41446
+32,4,Algeria,39208
+33,173,Poland,38217
+34,276,Sudan,37964
+35,226,Uganda,37579
+36,33,Canada,35182
+37,103,Iraq,33765
+38,143,Morocco,33008
+39,2,Afghanistan,30552
+40,236,Venezuela (Bolivarian Republic of),30405
+41,170,Peru,30376
+42,131,Malaysia,29717
+43,235,Uzbekistan,28934
+44,194,Saudi Arabia,28829
+45,149,Nepal,27797
+46,81,Ghana,25905
+47,144,Mozambique,25834
+48,116,Democratic People's Republic of Korea,24895
+49,249,Yemen,24407
+50,10,Australia,23343
+51,214,"China, Taiwan Province of",23330
+52,129,Madagascar,22925
+53,32,Cameroon,22254
+54,183,Romania,21699
+55,7,Angola,21472
+56,38,Sri Lanka,21273
+57,107,C??te d'Ivoire,20316
+58,158,Niger,17831
+59,40,Chile,17620
+60,233,Burkina Faso,16935
+61,150,Netherlands,16759
+62,108,Kazakhstan,16441
+63,130,Malawi,16363
+64,58,Ecuador,15738
+65,89,Guatemala,15468
+66,133,Mali,15302
+67,115,Cambodia,15135
+68,251,Zambia,14539
+69,181,Zimbabwe,14150
+70,195,Senegal,14133
+71,39,Chad,12825
+72,184,Rwanda,11777
+73,90,Guinea,11745
+74,49,Cuba,11266
+75,84,Greece,11128
+76,255,Belgium,11104
+77,222,Tunisia,10997
+78,167,Czechia,10702
+79,19,Bolivia (Plurinational State of),10671
+80,174,Portugal,10608
+81,56,Dominican Republic,10404
+82,53,Benin,10323
+83,93,Haiti,10317
+84,97,Hungary,9955
+85,210,Sweden,9571
+86,272,Serbia,9511
+87,52,Azerbaijan,9413
+88,57,Belarus,9357
+89,225,United Arab Emirates,9346
+90,11,Austria,8495
+91,208,Tajikistan,8208
+92,95,Honduras,8096
+93,211,Switzerland,8078
+94,105,Israel,7733
+95,112,Jordan,7274
+96,27,Bulgaria,7223
+97,96,"China, Hong Kong SAR",7204
+98,217,Togo,6817
+99,169,Paraguay,6802
+100,120,Lao People's Democratic Republic,6770
+101,60,El Salvador,6340
+102,197,Sierra Leone,6092
+103,157,Nicaragua,6080
+104,54,Denmark,5619
+105,113,Kyrgyzstan,5548
+106,199,Slovakia,5450
+107,67,Finland,5426
+108,213,Turkmenistan,5240
+109,162,Norway,5043
+110,48,Costa Rica,4872
+111,121,Lebanon,4822
+112,104,Ireland,4627
+113,37,Central African Republic,4616
+114,156,New Zealand,4506
+115,46,Congo,4448
+116,73,Georgia,4341
+117,123,Liberia,4294
+118,98,Croatia,4290
+119,136,Mauritania,3890
+120,166,Panama,3864
+121,80,Bosnia and Herzegovina,3829
+122,221,Oman,3632
+123,146,Republic of Moldova,3487
+124,234,Uruguay,3407
+125,118,Kuwait,3369
+126,3,Albania,3173
+127,126,Lithuania,3017
+128,1,Armenia,2977
+129,141,Mongolia,2839
+130,109,Jamaica,2784
+131,147,Namibia,2303
+132,154,The former Yugoslav Republic of Macedonia,2107
+133,122,Lesotho,2074
+134,198,Slovenia,2072
+135,119,Latvia,2050
+136,20,Botswana,2021
+137,75,Gambia,1849
+138,175,Guinea-Bissau,1704
+139,74,Gabon,1672
+140,220,Trinidad and Tobago,1341
+141,63,Estonia,1287
+142,209,Swaziland,1250
+143,137,Mauritius,1244
+144,50,Cyprus,1141
+145,176,Timor-Leste,1133
+146,66,Fiji,881
+147,72,Djibouti,873
+148,91,Guyana,800
+149,273,Montenegro,621
+150,128,"China, Macao SAR",566
+151,25,Solomon Islands,561
+152,207,Suriname,539
+153,256,Luxembourg,530
+154,35,Cabo Verde,499
+155,134,Malta,429
+156,26,Brunei Darussalam,418
+157,12,Bahamas,377
+158,132,Maldives,345
+159,23,Belize,332
+160,99,Iceland,330
+161,14,Barbados,285
+162,70,French Polynesia,277
+163,153,New Caledonia,256
+164,155,Vanuatu,253
+165,193,Sao Tome and Principe,193
+166,244,Samoa,190
+167,189,Saint Lucia,182
+168,191,Saint Vincent and the Grenadines,109
+169,86,Grenada,106
+170,83,Kiribati,102
+171,8,Antigua and Barbuda,90
+172,55,Dominica,72
+173,17,Bermuda,65
+174,188,Saint Kitts and Nevis,54
+175,351,China,1416667
