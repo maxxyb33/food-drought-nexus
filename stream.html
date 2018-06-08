@@ -1,0 +1,299 @@
+<!--NEED TO SORT DATA BY COUNTRY -- AND WRITE FUNCTION TO SWITCH/FILTER DATA PER COUNTRY AND PER IMPORT/EXPORT BUTTON-->
+<!--NEED TO SORT DATA BY COUNTRY -- AND WRITE FUNCTION TO SWITCH/FILTER DATA PER COUNTRY AND PER IMPORT/EXPORT BUTTON-->
+<!--NEED TO SORT DATA BY COUNTRY -- AND WRITE FUNCTION TO SWITCH/FILTER DATA PER COUNTRY AND PER IMPORT/EXPORT BUTTON-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Web Mapping Template</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--add favicon for the web page-->
+    <link rel="shortcut icon" href="img/logo.ico?" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Krona+One|Titillium+Web|Righteous" rel="stylesheet">
+    <style>
+        html, body { margin:0 auto;}
+        h1,h2,p {
+            margin:0px;
+        }
+        svg {
+            margin-left:auto; margin-right:auto; display:block;
+        }
+        .axis {
+            font: 10px sans-serif;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+        .tooltip {
+            position: absolute;
+            width: 150px;
+            height: 35px;
+            pointer-events: none;
+        }
+        button {
+            position: absolute;
+            left: 10px;
+            top: 100px;
+        }
+    </style>
+    <!--add required stylesheets-->
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--add a Bootstrap navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <!--<div class="container-fluid">-->
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <a class="navbar-brand" href="index.html">
+        <!--convert the style value to a class and then add the class to the css file.-->
+        <img src="img/logo.svg"  width="10%" class="d-inline-block align-top">
+    </a>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+        <!--Create class ml-auto for the navbar items you want on the right.-->
+
+        <ul class="navbar-nav ml-auto">
+
+            <!--a drop-down menu-->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <!--a simple top bar link-->
+            <li class="nav-item">
+                <a class="nav-link" href="map.html">Nexus Map</a>
+            </li>
+
+            <li>
+                <a class="nav-link" href="force.html"> <i class="fa fa-seedling"></i></i>&nbsp;&nbsp;<span>Force Graph</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="sankey.html">Sankey</a>
+            </li>
+            <!--an about page-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >About</a>
+                <div class="dropdown-menu" >
+                    <!--use flag icons ??  or insert small thumbnail photo of flag-->
+                    <a class="dropdown-item" href="about-us.html"> Website & Data</a>
+                    <a class="dropdown-item" href="http://geoviz.ceoas.oregonstate.edu/neocarto/"> Neocarto</a>
+                    <a class="dropdown-item" href="https://github.com/jakobzhao/geog4572"> GEOG 4/572 </a>
+                </div>
+            </li>
+        </ul>
+        <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </div>
+</nav>
+
+<h1 align="center">Cereal Streamgraph</h1>
+<h2 align="center">Imports 1965-2013</h2>
+<p align="center" id="major">(Mouse-over to see Grain Type)</p>
+<h3 align="center">Year</h3>
+<button onclick="transition()">Switch Imports / Exports</button>
+<div class="btn-group">
+    <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Country
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> China</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> India</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> United States</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Brazil</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Pakistan</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Nigeria</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> India</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Bangladesh</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Russia</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Mexico</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Japan</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Ethiopia</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Phillipines</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Egypt</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Viet Nam</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> DR Congo</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Germany</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Iran</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Turkey</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-flag"></i> Thailand</a>
+    </div>
+</div>
+
+
+
+
+
+<div>
+    <p class="text-center"; style="font-family: Krona One;">
+        Add content here
+    </p>
+</div>
+
+
+<script>
+    d3.csv('assets/FBS_Country_data_Top20.csv', function(err, d){
+        if(err) console.log(err);
+        console.log(d)
+        var nested_data = d3.nest()
+            .key(function(d) { return d.Year; })
+            .entries(d);
+        console.log(nested_data);
+        var mqpdata = nested_data.map(function(d){
+            var obj = {
+                yearobj: new Date(d.key, 0, 1)
+            }
+            d.values.forEach(function(v){
+                obj[v.Item] = v.Value;
+                console.log(d.Value)
+            })
+            return obj;
+        })
+        buildStreamGraph(mqpdata);
+    });
+    function buildStreamGraph(mqpdata) {
+        var data = mqpdata;
+        var stack = d3.stack()
+            .keys(["Barley and products", "Maize and products", "Rice (Milled Equivalent)", "Wheat and products"])
+            .order(d3.stackOrderNone)
+            .offset(d3.stackOffsetWiggle);
+        var series = stack(data);
+        var width = 850,
+            height = 800;
+        var x = d3.scaleTime()
+            .domain(d3.extent(data, function(d){ return d.yearobj; }))
+            .range([50, width]);
+// setup axis
+        var xAxis = d3.axisBottom(x);
+        var y = d3.scaleLinear()
+            .domain([0, d3.max(series, function(layer) { return d3.max(layer, function(d){ return d[0] + d[1];}); })])
+            .range([height/2, -50]);
+        var color = d3.scaleLinear()
+            .range(["#51D0D7", "#31B5BB"]);
+        var color = d3.scaleOrdinal(d3.schemeCategory10); //color = d3.interpolateCool/Warm/Plasma etc., https://github.com/d3/d3-scale-chromatic for other colors
+        var area = d3.area()
+            .x(function(d) { console.info('in area function', d); return x(d.data.yearobj); })
+            .y0(function(d) { return y(d[0]); })
+            .y1(function(d) { return y(d[1]); })
+            .curve(d3.curveBasis);
+        var tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip");
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        svg.selectAll("path")
+            .data(series)
+            .enter().append("path")
+            .attr("d", area)
+            .style("fill", function() { return color(Math.random()); })
+            .on('mouseover', function(d){
+                d3.select(this).style('fill',d3.rgb( d3.select(this).style("fill") ).brighter());
+                d3.select("#major").text("Grain: " + d.key);
+                tooltip.transition()
+                    .duration(700)
+                    .style("opacity", 1);
+                tooltip.html(d.key)
+                    .style("left", (d3.event.pageX + 5) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on('mouseout', function(d){
+                d3.select(this).style('fill',
+                    d3.rgb( d3.select(this).style("fill") ).darker());
+                d3.select("#major").text("(Mouse-over to see Grain Type)");
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
+        svg.append("g")
+            .attr("class", "axis axis--x")
+            .attr("transform", "translate(0," + (height) + ")")
+            .call(xAxis);
+        var xAxisGroup = svg.append("g").call(xAxis);
+        // UPDATE GRAPH WITH EXPORT DATA!
+        //
+        // d3.csv('assets/FBS_Country_data_Top20.csv', function(err, d){
+        //     if(err) console.log(err);
+        //     console.log(d)
+        //
+        //     var nested_data2 = d3.nest()
+        //         .key(function(d) { return d.Year; })
+        //         .entries(d);
+        //
+        //     console.log(nested_data2);
+        //
+        //     var mqpdata2 = nested_data2.map(function(d){
+        //         var obj = {
+        //             yearobj: new Date(d.key, 0, 1)
+        //         }
+        //
+        //         d.values.forEach(function(v){
+        //             obj[v.Item] = v.Value;
+        //             console.log(d.Value)
+        //         })
+        //
+        //         return obj;
+        //     })
+        // });
+        //
+        // var data2 = mqpdata2;
+        //
+        // function transition() {
+        //     var data2;
+        //     d3.selectAll("path")
+        //         .data((data2))
+        //         .transition()
+        //         .duration(2500)
+        //         .attr("d", area);
+        // }
+        //
+        //LEGEND??
+        // color.domain(keys);
+        // var legend = g.append("g")
+        //     .attr("font-family", "sans-serif")
+        //     .attr("font-size", 10)
+        //     .attr("text-anchor", "end")
+        //     .selectAll("g")
+        //     .data(keys.slice().reverse())
+        //     .enter().append("g")
+        //     .attr("transform", function(d, i) {
+        //         return "translate(0," + i * 20 + ")";
+        //     });
+        //
+        // legend.append("rect")
+        //     .attr("x", width + 55)
+        //     .attr("width", 19)
+        //     .attr("height", 19)
+        //     .attr("fill", color);
+        //
+        // legend.append("text")
+        //     .attr("x", width + 50)
+        //     .attr("y", 9.5)
+        //     .attr("dy", "0.32em")
+        //     .text(function(d) {
+        //         return d;
+        //     });
+    }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -11,14 +11,14 @@
     <link href="https://fonts.googleapis.com/css?family=Krona+One|Titillium+Web|Righteous" rel="stylesheet">
     <style>
         html, body { width: 100%; height: 100%; margin: 0; background: #fff; }
-        #map { width: 100%; height: 100%; margin: 0; background: #fff; }
+        #map { width: 100%; height: 75%; margin: 0; background: #fff; }
         .info-panel {
             line-height: 16px;
             width: 180px;
             position: absolute;
             z-index: 1000;
             left: 10px;
-            bottom: 5px;
+            bottom: 21%;
             color: #070707;
             padding: 6px 8px;
             background: rgba(243, 243, 243, 0.73);
@@ -39,6 +39,12 @@
             line-height: 16px;
             margin: 0;
         }
+
+        .droplist {
+            position: absolute;
+            z-index: 1000;
+        }
+
     </style>
     <!--add required stylesheets-->
     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
@@ -46,6 +52,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <!--<script src="https://unpkg.com/leaflet-swoopy"></script>-->
+    <script src="js/Leaflet.SwoopyArrow-customized.js"></script>
+    <script src="assets/kits.js"></script>
 
 </head>
 <body>
@@ -66,23 +75,9 @@
         <ul class="navbar-nav ml-auto">
 
             <!--a drop-down menu-->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >Country</a>
-                <div class="dropdown-menu" >
-                    <!--use flag icons ??  or insert small thumbnail photo of flag-->
-                    <a class="dropdown-item" href="#"> <i class="fa fa-flag"></i> China</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-flag"></i> India</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-flag"></i> United States </a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-flag"></i> Indonesia </a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-flag"></i> Brazil</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-flag"></i> Pakistan </a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-flag"></i> Nigeria</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-flag"></i> Bangladesh</a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-flag"></i> Russia </a>
-                    <a class="dropdown-item" href="#"> <i class="fa fa-flag"></i> Mexico </a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
             </li>
-
             <!--a simple top bar link-->
             <li class="nav-item">
                 <a class="nav-link" href="map.html">Nexus Map</a>
@@ -96,8 +91,14 @@
                 <a class="nav-link" href="sankey.html">Sankey</a>
             </li>
             <!--an about page-->
-            <li>
-                <a class= "nav-link" href="about-us.html" target="_self">About</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >About</a>
+                <div class="dropdown-menu" >
+                    <!--use flag icons ??  or insert small thumbnail photo of flag-->
+                    <a class="dropdown-item" href="about-us.html"> Website & Data</a>
+                    <a class="dropdown-item" href="http://geoviz.ceoas.oregonstate.edu/neocarto/"> Neocarto</a>
+                    <a class="dropdown-item" href="https://github.com/jakobzhao/geog4572"> GEOG 4/572 </a>
+                </div>
             </li>
         </ul>
         <nav class="navbar navbar-dark bg-dark">
@@ -107,11 +108,19 @@
         </nav>
     </div>
 </nav>
-
+<!--NAV BAR FINISHED-->
+<!--NAV BAR FINISHED-->
+<!--NAV BAR FINISHED-->
+<!--NAV BAR FINISHED-->
+<!--NAV BAR FINISHED-->
+<!--NAV BAR FINISHED-->
+<!--NAV BAR FINISHED-->
 
 
 <!--map container-->
 <div id="map" class="map"></div>
+
+
 
 
 <!--LEGEND info panel-->
@@ -152,9 +161,70 @@
     <p> Will try to add swoopy arrows when click-on-country.</p>
 
 </div>
-
-
-
+<div class="btn-group">
+    <div class="btn-group">
+        <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+            Country <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">China</a></li>
+            <li><a href="#">India</a></li>
+            <li><a href="#">United States</a></li>
+            <li><a href="#">Brazil</a></li>
+            <li><a href="#">Pakistan</a></li>
+            <li><a href="#">Nigeria</a></li>
+            <li><a href="#">India</a></li>
+            <li><a href="#">Bangladesh</a></li>
+            <li><a href="#">Russia</a></li>
+            <li><a href="#">Mexico</a></li>
+            <li><a href="#">Japan</a></li>
+            <li><a href="#">Ethiopia</a></li>
+            <li><a href="#">Phillipines</a></li>
+            <li><a href="#">Egypt</a></li>
+            <li><a href="#">Viet Nam</a></li>
+            <li><a href="#">DR Congo</a></li>
+            <li><a href="#">Germany</a></li>
+            <li><a href="#">Iran</a></li>
+            <li><a href="#">Turkey</a></li>
+            <li><a href="#">Thailand</a></li>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">All</a>
+        </ul>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+            Grain <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Barley</a></li>
+            <li><a href="#">Maize</a></li>
+            <li><a href="#">Millet</a></li>
+            <li><a href="#">Rice</a></li>
+            <li><a href="#">Wheat</a></li>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">All</a>
+        </ul>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-alert dropdown-toggle" data-toggle="dropdown">
+            Year <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#">1965</a></li>
+            <li><a href="#">1970</a></li>
+            <li><a href="#">1975</a></li>
+            <li><a href="#">1980</a></li>
+            <li><a href="#">1985</a></li>
+            <li><a href="#">1990</a></li>
+            <li><a href="#">1995</a></li>
+            <li><a href="#">2000</a></li>
+            <li><a href="#">2005</a></li>
+            <li><a href="#">2010</a></li>
+            <li><a href="#">2011</a></li>
+            <li><a href="#">2012</a></li>
+            <li><a href="#">2013</a></li>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">All</a>
+        </ul>
+    </div>
+</div>
 
 
 
@@ -181,6 +251,10 @@
 
 
 <script type="text/javascript">
+
+
+
+
     var map = L.map("map", {zoomControl: false}).setView([30, 0], 2); // deactivate the zoomControl
     // construct a base map in light color.md.
     L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png').addTo(map);
@@ -228,7 +302,37 @@
         style: style
     }).addTo(map); //...geojson, ([style: style}].addTo...
 
+    //
 
+
+
+//Need function to pull lat long of countries by selected button name and map-click, to insert into below function.
+    // Add a function to differ line 'weight' (thickness) based on Value (tonnes).
+    L.swoopyArrow([33, -98], [53.525, 14.41], {
+        color: "#ffd100",
+        opacity: 0.7,
+        weight:'3'
+    }).addTo(map);
+
+
+    for(let i=0; i<kits.features.length; i++) {
+
+        setTimeout(function () {
+            lng = kits.features[i].geometry.coordinates[0];
+            lat = kits.features[i].geometry.coordinates[1];
+
+            L.swoopyArrow([-28, 134], [lat, lng], {
+                labelFontSize: 12,
+                iconAnchor: [20, 10],
+                iconSize: [30, 16],
+                color: '#ffd100',
+                opacity: 0.7,
+                weight:'3'
+            }).addTo(map);
+            // layergroup2.addLayer( L.marker([lat, lng], {icon: pwbIcon}));
+
+        }, 100 * i);
+    }
 
 
 </script>
