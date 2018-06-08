@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--add favicon for the web page-->
     <link rel="shortcut icon" href="img/logo.ico?" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Krona+One|Titillium+Web|Righteous" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand|Krona+One|Titillium+Web|Righteous" rel="stylesheet">
     <style>
         html, body { width: 100%; height: 100%; margin: 0; background: #fff; }
         #map { width: 100%; height: 75%; margin: 0; background: #fff; }
@@ -43,6 +43,11 @@
         .droplist {
             position: absolute;
             z-index: 1000;
+        }
+
+        li.dropdown:last-child .dropdown-menu {
+            right: 0;
+            left: auto;
         }
 
     </style>
@@ -221,7 +226,7 @@
             <li><a href="#">2012</a></li>
             <li><a href="#">2013</a></li>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">All</a>
+            <li><a class="dropdown-item" href="#">All</a></li>
         </ul>
     </div>
 </div>
@@ -229,7 +234,7 @@
 
 
 <div>
-    <h1 class="text-center"; style="font-family: Krona One;">
+    <h1 class="text-center"; style="font-family: Quicksand;">
         Food Drought Nexus
     </h1>
 </div>
@@ -239,9 +244,9 @@
 
 
 <div>
-    <p class="text-center"; style="font-family: Righteous;">Click on a country to show trade arrows/pick from the drop-down menu of countries.</p>
+    <p class="text-center"; style="font-family: Quicksand;">Click on a country to show trade arrows/pick from the drop-down menu of countries.</p>
     <br>
-    <p class="text-center"; style="font-family: Righteous;">Change the year of the basemap to see how drought has affected the year.</p>
+    <p class="text-center"; style="font-family: Quicksand;">Change the year of the basemap to see how drought has affected the year.</p>
 </div>
 
 
@@ -333,6 +338,52 @@
 
         }, 100 * i);
     }
+
+
+//CONVERT TO GEOJSON when lat longs are added to datasheet, then rename as data.geojson
+    d3.json('assets/FBS_Country_data.json').then(function(data) {
+
+        //////////////////////////////////////////////////PREP THE DATA////////////////////////////////////////////////////////
+        //create crossfilter passes each feature to the filter. We have to pass it through the crossfilter before we can split up with data using
+        //the .dimensions() method
+        var filter = crossfilter(data.features); //passes the features to the crossfilter
+
+        // groups everything together into one group, this is used to quickly search all of the data at once
+        var all = filter.groupAll();
+
+
+        //Takes each of the records of the dataset and returns each individual line so that they can be used. .dimension() puts
+        // the data into an easily searchable/manipulable format for DC
+        var everything = filter.dimension(function (d) {
+            return d
+        });
+
+        //////////////////////////////////////////////SORT THE DATA///////////////////////////////////////////////////////////
+        //Now that we have our initial data imported and in the right format using crossfilter we now have to sort out the data that we want to display, set up
+        //the chart space and populate the graphs
+
+        //returns the geometry for each feature; this is the points at which each earthquake happened
+        var geomDimension = filter.dimension(function (d) {
+            return d.geometry
+        });
+
+        //defines the categories from magnitude property
+        var valueDimension = filter.dimension(function (d) {
+
+            var value = d.properties.value;
+            valueClass = "> 15";
+
+            if (mag <= 6) {
+                valueClass = "<6"
+            } else if (mag > 1.2 && mag <= 15) {
+                valueClass = "1-15"
+            } else {
+                valueClass = ">15"
+            }
+            return valueClass;
+        });
+    })
+
 
 
 </script>

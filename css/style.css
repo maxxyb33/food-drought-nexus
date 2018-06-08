@@ -34,6 +34,7 @@ Table of Content:
 /*----------------------------------------------------*/
 /*font Variables*/
 /*Color Variables*/
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,300i,400,400i,500,500i,700,900");
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,900");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700");
 .col-md-offset-right-1, .col-lg-offset-right-1 {
@@ -124,7 +125,7 @@ i:before {
 
 .c_title h6 {
   font-size: 14px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   color: #7c8d93;
@@ -134,7 +135,7 @@ i:before {
 .c_title h2 {
   font-size: 48px;
   color: #0b1033;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   font-weight: 500;
 }
 
@@ -148,7 +149,7 @@ i:before {
 
 .l_title h6 {
   font-size: 14px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   color: #7c8d93;
@@ -158,7 +159,7 @@ i:before {
 .l_title h2 {
   font-size: 48px;
   color: #0b1033;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   font-weight: 500;
 }
 
@@ -225,7 +226,7 @@ i:before {
 
 .main_menu_area .navbar .navbar-nav li a {
   font-size: 13px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   color: #fff;
@@ -276,7 +277,7 @@ i:before {
   display: block;
   line-height: 38px;
   color: #fff;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   letter-spacing: .48px;
   font-size: 16px;
   padding: 0px 30px;
@@ -370,14 +371,14 @@ i:before {
 .banner_inner_text h2 {
   font-size: 72px;
   color: #0b1033;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   font-weight: normal;
 }
 
 .banner_inner_text p {
   font-size: 24px;
   color: #6b7d8e;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   font-weight: normal;
   padding-top: 15px;
 }
@@ -507,7 +508,7 @@ i:before {
 
 .testimonials_slider .testi_item h3 {
   font-size: 24px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   font-weight: bold;
   color: #0b1033;
 }
@@ -592,7 +593,7 @@ i:before {
 
 .feature_item h4 {
   color: #0b1033;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   font-weight: bold;
   font-size: 24px;
   padding: 45px 0px 20px 0px;
@@ -601,7 +602,7 @@ i:before {
 .feature_item p {
   font-size: 15px;
   line-height: 28px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   color: #7c8d93;
   font-weight: 500;
   max-width: 290px;
@@ -678,7 +679,7 @@ i:before {
 }
 
 .team_people_text p {
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   color: #7c8d93;
   font-size: 15px;
   line-height: 28px;
@@ -698,7 +699,7 @@ i:before {
 
 .team_people_text ul li a {
   padding-left: 18px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   color: #7c8d93;
   font-size: 15px;
   line-height: 28px;
@@ -780,7 +781,7 @@ i:before {
   font-size: 15px;
   line-height: 28px;
   color: #7c8d93;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   font-weight: 500;
   padding-right: 25px;
 }
@@ -820,7 +821,7 @@ i:before {
 .left_company_text p {
   font-size: 15px;
   color: #7c8d93;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   font-weight: 500;
   padding-right: 20px;
 }
@@ -831,7 +832,7 @@ i:before {
 
 .company_skill p {
   font-size: 18px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Quicksand", "Roboto", sans-serif;
   line-height: 28px;
   color: #7c8d93;
   font-weight: 500;
