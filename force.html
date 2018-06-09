@@ -13,9 +13,17 @@
     <style>
         html, body { width: 100%; height: 100%; margin: 0; background: #fff; font-family: Quicksand}
 
+
         nav{
             z-index: 2000;
+            font-size: larger;
         }
+
+        .bg-custom {
+            /*background-color: rgba(109, 63, 15, 0.8);*/
+            background: linear-gradient(to bottom right, #cc8740, rgba(255, 205, 92, 0.89));
+        }
+
 
         .info-panel {
             line-height: 16px;
@@ -65,6 +73,46 @@
             left: auto;
         }
 
+        .overlay-desc {
+            z-index: 200;
+            background: rgba(0,0,0,0);
+            position: absolute;
+            top: 0; right: 0; bottom: 70%; left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .overlay-desc-sub {
+            z-index: 200;
+            background: rgba(0,0,0,0);
+            position: absolute;
+            top: 0; right: 0; bottom: -94%; left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            color: white;
+            font-family: "Righteous";
+            font-size: 2vw;
+            text-align: center;
+        }
+
+        p {;
+            color: white;
+            font-family: Quicksand;
+            z-index: 2000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            line-height: 1.7rem;
+            text-align: center;
+        }
+
+        main {
+            margin: 0 auto;
+            width: 80%;
+        }
+
     </style>
     <!--add required stylesheets-->
     <script src="//unpkg.com/three"></script>
@@ -103,8 +151,24 @@
                 <a class="nav-link" href="map.html">Nexus Map</a>
             </li>
 
-            <li>
-                <a class="nav-link" href="force.html"> <i class="fa fa-seedling"></i></i>&nbsp;&nbsp;<span>3D Network</span></a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="force.html" role="button" data-toggle="dropdown" >3D Network</a>
+                <div class="dropdown-menu" >
+                    <a class="dropdown-item" href="force.html"><b>Top 10 Populations</b></a>
+                    <a class="dropdown-item dropdown-toggle dropdown-submenu" href="force1.html"><b>Filter Country</b></a>
+                    <ul>
+                        <a class="dropdown-item" href="#">1. China</a>
+                        <a class="dropdown-item" href="#.html">2. India</a>
+                        <a class="dropdown-item" href="#.html">3. United States</a>
+                        <a class="dropdown-item" href="#.html">4. Brazil</a>
+                        <a class="dropdown-item" href="#.html">5. Pakistan</a>
+                        <a class="dropdown-item" href="#.html">6. Nigeria</a>
+                        <a class="dropdown-item" href="#.html">7. India</a>
+                        <a class="dropdown-item" href="#.html">8. Bangladesh</a>
+                        <a class="dropdown-item" href="#.html">9. Russia</a>
+                        <a class="dropdown-item" href="#.html">10. Mexico</a>
+                    </ul>
+                </div>
             </li>
 
             <li class="nav-item">
@@ -128,16 +192,20 @@
         <!--</nav>-->
     </div>
 </nav>
+<!--CONTENT PAGE HERE-->
+<!--CONTENT PAGE HERE-->
+<!--CONTENT PAGE HERE-->
+<!--CONTENT PAGE HERE-->
+<!--CONTENT PAGE HERE-->
 
 
+<div class="overlay-desc">
+    <h1>Trade Links between Top 10 Countries (by Population)</h1></div>
+<div class="overlay-desc-sub">
+    <p>Click and drag nodes to examine relationships.  <br>
+        Particle speed is proportional to amount traded (tonnes)</p></div>
 
-<div class="text-center">
-    <h2>
-        Force Graph showing Trade Links between Top 20 Countries (by Population)
-    </h2>
-    <br>
-    <h4>Click and drag nodes to examine relationships</h4>
-</div>
+
 
 <div id="3d-graph"></div>
 

@@ -13,6 +13,19 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand|Krona+One|Titillium+Web|Righteous" rel="stylesheet">
     <style>
         html, body { width: 100%; height: 100%; margin: 0; background: #fff; font-family: Quicksand}
+
+
+        nav{
+            z-index: 2000;
+            font-size: larger;
+        }
+
+        .bg-custom {
+            /*background-color: rgba(109, 63, 15, 0.8);*/
+            background: linear-gradient(to bottom right, #cc8740, rgba(255, 205, 92, 0.89));
+        }
+
+
         .node rect {
             cursor: move;
             fill-opacity: .9;
@@ -37,6 +50,8 @@
             right: 0;
             left: auto;
         }
+
+
     </style>
     <!--add required stylesheets-->
     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
@@ -48,7 +63,7 @@
 </head>
 <body>
 <!--add a Bootstrap navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-custom">
 
     <!--<div class="container-fluid">-->
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -72,8 +87,25 @@
                 <a class="nav-link" href="map.html">Nexus Map</a>
             </li>
 
-            <li>
-                <a class="nav-link" href="force.html"> <i class="fa fa-seedling"></i></i>&nbsp;&nbsp;<span>Force Graph</span></a>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="force.html" role="button" data-toggle="dropdown" >3D Network</a>
+                <div class="dropdown-menu" >
+                    <a class="dropdown-item" href="force.html"><b>Top 10 Populations</b></a>
+                    <a class="dropdown-item dropdown-toggle dropdown-submenu" href="force1.html"><b>Filter Country</b></a>
+                    <ul>
+                        <a class="dropdown-item" href="#">1. China</a>
+                        <a class="dropdown-item" href="#.html">2. India</a>
+                        <a class="dropdown-item" href="#.html">3. United States</a>
+                        <a class="dropdown-item" href="#.html">4. Brazil</a>
+                        <a class="dropdown-item" href="#.html">5. Pakistan</a>
+                        <a class="dropdown-item" href="#.html">6. Nigeria</a>
+                        <a class="dropdown-item" href="#.html">7. India</a>
+                        <a class="dropdown-item" href="#.html">8. Bangladesh</a>
+                        <a class="dropdown-item" href="#.html">9. Russia</a>
+                        <a class="dropdown-item" href="#.html">10. Mexico</a>
+                    </ul>
+                </div>
             </li>
 
             <li class="nav-item">
@@ -90,14 +122,13 @@
                 </div>
             </li>
         </ul>
-        <nav class="navbar navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </nav>
+        <!--<nav class="navbar navbar-dark bg-custom">-->
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">-->
+        <!--<span class="navbar-toggler-icon"></span>-->
+        <!--</button>-->
+        <!--</nav>-->
     </div>
-</nav>
-<!--CONTENT-->
+</nav><!--CONTENT-->
 <!--CONTENT-->
 <!--CONTENT-->
 <!--CONTENT-->
