@@ -282,10 +282,27 @@
 
 
 <script>
+
+   var top10 = 'assets/imports.json';
+   var China = '';
+   var India = '';
+   var UnitedStates = '';
+   var Brazil = '';
+   var Pakistan = '';
+   var Nigeria = '';
+   var India = '';
+   var Bangladesh = '';
+   var Russia = '';
+   var Mexico = '';
+
+
+
+
+
 	const distance = 1000;
     const Graph = ForceGraph3D()
     (document.getElementById('3d-graph'))
-        .jsonUrl('assets/imports.json')
+        .jsonUrl(top10)
         // .nodeLabel('id')
         .nodeAutoColorBy('group')
         .linkDirectionalParticles("value")
@@ -322,6 +339,20 @@
     })
 
 
+
+
+    $("#country").change(function(){
+        $("#3d-graph").remove();
+
+        //if/for statement for each of 10 countries; if China, load force-china.html
+
+// alert($(this).val());
+//          var country = $(this).val();
+//          top10.remove();
+//          add();
+//         droughtw = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI' + year + '7_wet/tile_{z}_{x}-{y}.png');
+//         droughtw.addTo(map);
+    });
 
 </script>
 

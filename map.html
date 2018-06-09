@@ -46,7 +46,7 @@
             color: #070707;
             padding: 6px 8px;
             background: rgba(243, 243, 243, 0.73);
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
             border-radius: 5px;
             text-align: justify;
         }
@@ -415,22 +415,48 @@
 
 
 
+    var countries = null;
+    countries = L.geoJson.ajax("assets/world_simplified.geojson", {
+        style: style,
+        onEachFeature(feature, layer) {
+            layer.on('mouseover', function () {
+                this.setStyle({
+                    'fillColor': '#810f10',
+                    'fillOpacity': .5
+                });
+            });
+            layer.on('mouseout', function () {
+                this.setStyle({
+                    'fillColor': '#FFEDA0',
+                    'fillOpacity': .1
+                });
+            });
+        //     layer.on('click', function () {
+        //         window.location = feature.properties.NAME//URL;
+        //     });
+        }
+    }).addTo(map); //...geojson, ([style: style}].addTo...
+//ADD window.location = function reload arrows for that country.
 
-    function style() {
+
+
+    function getColor(d) {
+        return d > 1000 ? '#800026' :
+                                    '#FFEDA0';
+    }
+
+
+    function style(feature) {
         return {
-            //fillColor: setColor(feature.properties.NAME),
-            fillOpacity: 0.1,
-            weight: 1,
+            fillColor: getColor(feature.properties.density),
+            weight: 1.5,
             opacity: 1,
             color: 'blue',
-            dashArray: '10'
+            dashArray: '6',
+            fillOpacity: 0.1
         };
     }
 
-    var countries = null;
-    countries = L.geoJson.ajax("assets/world_simplified.geojson", {
-        style: style
-    }).addTo(map); //...geojson, ([style: style}].addTo...
 
 
 
