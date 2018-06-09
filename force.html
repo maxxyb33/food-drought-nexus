@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="img/logo.ico?" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Quicksand|Krona+One|Titillium+Web|Righteous" rel="stylesheet">
     <style>
-        html, body { width: 100%; height: 100%; margin: 0; background: #fffaf1; font-family: Quicksand; font-weight: bold; color: #5e3e1d;}
+        html, body { width: 100%; height: 100%; margin: 0; background: #fffaf1; font-family: "Quicksand", sans-serif; font-weight: bold; color: #5e3e1d;}
 
 
         nav{
@@ -27,16 +27,31 @@
 
         .info-panel {
             line-height: 16px;
-            width: 180px;
-            position: sticky;
+            width: 290px;
+            position: absolute;
             z-index: 1000;
             left: 10px;
-            bottom: 5px;
+            bottom: 2%;
             color: #070707;
             padding: 6px 8px;
             background: rgba(243, 243, 243, 0.73);
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
             border-radius: 5px;
+            text-align: justify;
+        }
+        .info-panel i {
+            width: 16px;
+            height: 14px;
+            line-height: 18px;
+            float: left;
+            margin-top: 2px;
+            margin-right: 5px;
+            opacity: 0.7;
+        }
+        .info-panel p {
+            font-size: 18px;
+            line-height: 16px;
+            margin: 0;
         }
 
         #3d-graph {
@@ -51,21 +66,6 @@
             overflow-x: hidden;
             overflow-y: hidden;
             background-color: #f5f5f5;
-        }
-
-        .info-panel i {
-            width: 16px;
-            height: 14px;
-            line-height: 18px;
-            float: left;
-            margin-top: 2px;
-            margin-right: 8px;
-            opacity: 0.7;
-        }
-        .info-panel p {
-            font-size: 12px;
-            line-height: 16px;
-            margin: 0;
         }
 
         li.dropdown:last-child .dropdown-menu {
@@ -91,16 +91,11 @@
             align-items: center;
             justify-content: center;
         }
-        h1 {
-            color: white;
-            font-family: "Righteous";
-            font-size: 2vw;
-            text-align: center;
-        }
+
 
         p {;
             color: white;
-            font-family: Quicksand;
+            font-family: "Quicksand", sans-serif; !important;
             z-index: 2000;
             font-size: 1.1rem;
             font-weight: bold;
@@ -111,6 +106,22 @@
         main {
             margin: 0 auto;
             width: 80%;
+        }
+
+        h1 {
+            text-align: right;
+            text-shadow: 2px 0 #ffcd5c, 0 1px #ffcd5c, 1px 0 #ffcd5c, 0 -1px #ffcd5c;
+            font-weight: bold;
+        }
+
+        #h1a {
+            text-align: right;
+            text-shadow: 2px 0 #fffaf1, 0 1px #fffaf1, 1px 0 #ffcd5c, 0 -1px #ffcd5c;
+            font-weight: bold;
+        }
+
+        h6 {
+            background-color: rgba(255, 205, 92, 0.89);
         }
 
 
@@ -202,14 +213,131 @@
 
 
 <div class="overlay-desc">
-    <h1>Trade Links between Top 10 Countries (by Population)</h1></div>
+    <h1 id="h1a">Trade Links between Top 10 Countries (by Population)</h1></div>
 <div class="overlay-desc-sub">
-    <p>Click and drag nodes to examine relationships.  <br>
-        Particle speed is proportional to amount traded (tonnes)</p></div>
+    <p>d3 Forcegraph</p></div>
 
 
 
 <div id="3d-graph"></div>
+
+
+
+<!--LEGEND info panel-->
+<div class="info-panel">
+    <h1>Food-Drought Nexus</h1>
+    <h6><b> Migrations of Many Major Cereals </b></h6><br/>
+    <!-- legend patch items -->
+    <table style="width:100%">
+        <tr>
+            <td><i style="background: #fbf9cf"></i> <p> Barley </p></td>
+            <td><i style="background: #f7ebb2"></i> <p> Maize </p></td>
+        </tr>
+        <tr>
+            <td><i style="background: #f3d885"></i> <p> Millet </p></td>
+            <td><i style="background: #ffcd5c"></i> <p> Rice </p></td>
+        </tr>
+        <tr>
+            <td><i style="background: #cc8740"></i> <p> Wheat </p></td>
+            <td>
+                <!--poly line feature-->
+                <!--svg editor http://jxnblk.com/paths/-->
+                <i><svg width="16" height="16">
+                    <path d='M0 16 L16 16 L16 0 L8 10 L0 0 Z' style="stroke-dasharray:2; stroke:rgb(0,45,129); stroke-width:3px;fill:rgba(9,73,255,0.78)"></path>
+                </svg></i> <p> Country Area </p>
+            </td>
+        </tr>
+        <tr>
+            <td>    <!--no data symbol-->
+                <i><svg width="16" height="16" data-reactid=".0.1.1.0.0.1:$=11:$1.0.0.$masked.0">
+                    <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width="4" height="4">
+                        <path d="M-1,1 l2,-2
+       M0,4 l4,-4
+       M3,5 l2,-2" style="stroke:black; stroke-width:0.5px" />
+                    </pattern>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#diagonalHatch)"/>
+                </svg></i> <p> No data </p></td>
+            <td><!--drought tile image-->
+                <i><img src="img/droughticon.png" width="16"></i>
+                <p> Drought Map</p></td>
+        </tr>
+    </table>
+    <!--place holder-->
+    <br/>
+    <img src="img/dscale.PNG" width="200">
+    <br/>
+    <br>
+    <i class="fa fa-share-square"></i><div> Click and drag nodes to examine relationships.</div>
+    <i class="fa fa-question-circle"></i><div> Particle speed is proportional to amount traded (tonnes). </div><br>
+
+
+
+    <!--<div class="btn-group">-->
+    <!--<div class="btn-group">-->
+    <!--<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">-->
+    <!--Grain <span class="caret"></span></button>-->
+    <!--<ul class="dropdown-menu" role="menu">-->
+    <!--<li><a href="#">Barley</a></li>-->
+    <!--<li><a href="#">Maize</a></li>-->
+    <!--<li><a href="#">Millet</a></li>-->
+    <!--<li><a href="#">Rice</a></li>-->
+    <!--<li><a href="#">Wheat</a></li>-->
+    <!--<div class="dropdown-divider"></div>-->
+    <!--<a class="dropdown-item" href="#">All</a>-->
+    <!--</ul>-->
+    <!--</div>-->
+
+
+    <select id="country">
+        <option value="Barley">China</option>
+        <option value="Maize">India</option>
+        <option value="Millet">United States</option>
+        <option value="Rice">Brazil</option>
+        <option value="Wheat">Pakistan</option>
+        <option value="Barley">Nigeria</option>
+        <option value="Maize">India</option>
+        <option value="Millet">Bangladesh</option>
+        <option value="Millet">Russia</option>
+        <option value="Millet">Mexico</option>
+        <option value="Rice">Japan</option>
+        <option value="Wheat">Ethiopia</option>
+        <option value="Barley">Phillipines</option>
+        <option value="Rice">Egypt</option>
+        <option value="Wheat">Viet Nam</option>
+        <option value="Barley">DR Congo</option>
+        <option value="Maize">Germany</option>
+        <option value="Millet">Iran</option>
+        <option value="Rice">Turkey</option>
+        <option value="Wheat">Thailand</option>
+    </select>
+
+    <select id="grain">
+        <option value="Barley">Barley</option>
+        <option value="Maize">Maize</option>
+        <option value="Millet">Millet</option>
+        <option value="Rice">Rice</option>
+        <option value="Wheat">Wheat</option>
+    </select>
+
+
+    <select id="year">
+        <option value="1980">1980</option>
+        <option value="1985">1985</option>
+        <option value="1990">1990</option>
+        <option value="1995">1995</option>
+        <option value="2000">2000</option>
+        <option value="2005">2005</option>
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+    </select>
+</div>
+
+
+
+</div>
+
 
 <script>
 	const distance = 1000;
