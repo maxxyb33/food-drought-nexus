@@ -27,7 +27,7 @@
 
         .info-panel {
             line-height: 16px;
-            width: 300px;
+            width: 23% /*300px*/;
             position: absolute;
             z-index: 1000;
             left: 10px;
@@ -77,10 +77,10 @@
             z-index: 200;
             background: rgba(0,0,0,0);
             position: absolute;
-            top: 0; right: 0; bottom: 70%; left: 0;
+            top: 0; right: 0; bottom: 65%; left: 0;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; !important;
         }
         .overlay-desc-sub {
             z-index: 200;
@@ -137,7 +137,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 </head>
-<body>
+<body onclick="myFunction()">
 <!--add a Bootstrap navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-custom">
 
@@ -145,7 +145,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <a class="navbar-brand" href="index.html">
         <!--convert the style value to a class and then add the class to the css file.-->
-        <img src="img/logo.svg"  width="10%" class="d-inline-block align-top">
+        <img src="img/logo.svg"  width="15%" class="d-inline-block align-top">
     </a>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -231,7 +231,7 @@
     <!--place holder-->
     <br>
     <i class="fa fa-mouse-pointer" style="font-size:20px;color:#5e3e1d;"></i><div> Drag nodes to examine relationships.</div><br>
-    <i class="fa fa-ellipsis-h" style="font-size:20px;color:#ffcd5c;"></i><div> Particle speed is proportional to amount traded (tonnes). </div><br>
+    <i class="fa fa-ellipsis-h" style="font-size:20px;color:#ffcd5c;"></i><div> Particle speed is directional and proportional to amount traded (tonnes). </div><br>
 
 
 
@@ -278,9 +278,6 @@
 
 
 
-</div>
-
-
 <script>
 
    var top10 = 'assets/imports.json';
@@ -312,39 +309,44 @@
 	    .nodeThreeObject(node => {
 		    const sprite = new SpriteText(node.id);
 		    sprite.color = node.color;
-		    sprite.textHeight = 8;
+		    sprite.textHeight = 15;
 		    return sprite;
 	    });
 
 
-	Graph.d3Force('charge').strength(-550);
+	Graph.d3Force('charge').strength(-600);
 
 
-	// camera orbit
-	// let angle = 0;
-	// setInterval(() => {
-	// 	Graph.cameraPosition({
-	// 		x: distance * Math.sin(angle),
-	// 		z: distance * Math.cos(angle)
-	// 	});
-	// 	angle += Math.PI / 300;
-	// }, 50);
+	//camera orbit
+	let angle = 0;
+	setInterval(() => {
+		Graph.cameraPosition({
+			x: distance * Math.sin(angle),
+			z: distance * Math.cos(angle)
+		});
+		angle += Math.PI / 300;
+	}, 40);
 
 
+   document.getElementById("3d-graph").onclick = function(event) {myFunction(event)}
+   function myFunction() {
 
-
-    $(window).on("resize", function(){
-	    var width = $( window ).width();
-	    Graph.width(width)
-    })
-
+       //var camera = $("cameraPosition").stop();
 
 
 
-    $("#country").change(function(){
-        $("#3d-graph").remove();
 
-        //if/for statement for each of 10 countries; if China, load force-china.html
+
+       $(window).on("resize", function () {
+           var width = $(window).width();
+           Graph.width(width)
+       })
+
+       //
+       // $("#country").change(function () {
+       //     $("#3d-graph").remove();
+
+           //if/for statement for each of 10 countries; if China, load force-china.html
 
 // alert($(this).val());
 //          var country = $(this).val();
@@ -352,7 +354,7 @@
 //          add();
 //         droughtw = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI' + year + '7_wet/tile_{z}_{x}-{y}.png');
 //         droughtw.addTo(map);
-    });
+   }
 
 </script>
 
