@@ -32,10 +32,9 @@
             transform: translate(-50%, -50%);
         }
 
-nav{
-
-    z-index: 2000;
-}
+        nav{
+            z-index: 2000;
+        }
 
 
         .overlay-desc {
@@ -70,6 +69,7 @@ nav{
         p {;
             color: white;
             font-family: Quicksand;
+            z-index: 2000;
             font-size: 1.1rem;
             font-weight: bold;
             line-height: 1.7rem;
@@ -79,6 +79,7 @@ nav{
         position: absolute;
         top: 80%;
         left: 50%;
+        z-index: 2000;
         transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
         background-color: #ffcd5c;
@@ -105,7 +106,7 @@ nav{
 </head>
 <body>
 <!--add a Bootstrap navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-custom">
 
     <!--<div class="container-fluid">-->
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -130,7 +131,7 @@ nav{
             </li>
 
             <li>
-                <a class="nav-link" href="force.html"> <i class="fa fa-seedling"></i></i>&nbsp;&nbsp;<span>Force Graph</span></a>
+                <a class="nav-link" href="force.html"> <i class="fa fa-seedling"></i></i>&nbsp;&nbsp;<span>3D Network</span></a>
             </li>
 
             <li class="nav-item">
@@ -147,11 +148,11 @@ nav{
                 </div>
             </li>
         </ul>
-        <nav class="navbar navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </nav>
+        <!--<nav class="navbar navbar-dark bg-custom">-->
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">-->
+        <!--<span class="navbar-toggler-icon"></span>-->
+        <!--</button>-->
+        <!--</nav>-->
     </div>
 </nav>
 <!--NAV BAR FINISHED-->
