@@ -17,16 +17,29 @@
             left: auto;
         }
 
-        .video-container {
-            position: relative;
+        video {
+            position: fixed;
+            z-index: 1 !important;
+            bottom: 0;
+            right: 0;
+            border-radius: 0;
+            min-height: 100%;
+            min-width: 100%;
+            /*pointer-events: none;*/
+            display: block;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        video {
-            height: auto;
-            vertical-align: middle;
-            width: 100%;
-        }
+nav{
+
+    z-index: 2000;
+}
+
+
         .overlay-desc {
+            z-index: 200;
             background: rgba(0,0,0,0);
             position: absolute;
             top: 0; right: 0; bottom: 0; left: 0;
@@ -150,20 +163,20 @@
 <!--NAV BAR FINISHED-->
 
 
-<div class="video-container">
-    <video autoplay loop muted>
-        <source src="assets/landingvid.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+
     <div class="overlay-desc">
         <h1>Cereal Migrations</h1></div>
     <div class="overlay-desc-sub">    <br>
         <p>Tracking the Global Cereal Trade</p></div>
-    </div>
+
     <div><a class="btn btn-warning btn-lg float-right" href="map.html" role="button">Explore</a></div>
-</div>
 
 
+
+<video autoplay loop muted>
+    <source src="assets/landingvid.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
 
 
