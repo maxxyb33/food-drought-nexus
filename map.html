@@ -11,14 +11,29 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand|Krona+One|Titillium+Web|Righteous" rel="stylesheet">
     <style>
         html, body { width: 100%; height: 100%; margin: 0; background: #fff; font-family: Quicksand}
-        #map { width: 100%; height: 75%; margin: 0; background: #fff; }
+        /*#map { width: 100%; height: 75%; margin: 0; background: #fff; }*/
+
+        #map {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index:1;     /*a larger z-index than the container*/
+            display: block;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-color: #f5f5f5;
+        }
+
         .info-panel {
             line-height: 16px;
-            width: 180px;
+            width: 280px;
             position: absolute;
             z-index: 1000;
             left: 10px;
-            bottom: 21%;
+            bottom: 2%;
             color: #070707;
             padding: 6px 8px;
             background: rgba(243, 243, 243, 0.73);
@@ -154,8 +169,6 @@
 <div id="map" class="map"></div>
 
 
-
-
 <!--LEGEND info panel-->
 <div class="info-panel">
     <h4>Food Migration</h4>
@@ -193,89 +206,105 @@
     <p> Also the drought map can go underneath or overtop.  </p>
     <p> Will try to add swoopy arrows when click-on-country.</p>
 
-</div>
-<div class="btn-group">
+
     <div class="btn-group">
-        <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
-            Country <span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#">China</a></li>
-            <li><a href="#">India</a></li>
-            <li><a href="#">United States</a></li>
-            <li><a href="#">Brazil</a></li>
-            <li><a href="#">Pakistan</a></li>
-            <li><a href="#">Nigeria</a></li>
-            <li><a href="#">India</a></li>
-            <li><a href="#">Bangladesh</a></li>
-            <li><a href="#">Russia</a></li>
-            <li><a href="#">Mexico</a></li>
-            <li><a href="#">Japan</a></li>
-            <li><a href="#">Ethiopia</a></li>
-            <li><a href="#">Phillipines</a></li>
-            <li><a href="#">Egypt</a></li>
-            <li><a href="#">Viet Nam</a></li>
-            <li><a href="#">DR Congo</a></li>
-            <li><a href="#">Germany</a></li>
-            <li><a href="#">Iran</a></li>
-            <li><a href="#">Turkey</a></li>
-            <li><a href="#">Thailand</a></li>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">All</a>
-        </ul>
+        <div class="btn-group">
+            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                Country <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">China</a></li>
+                <li><a href="#">India</a></li>
+                <li><a href="#">United States</a></li>
+                <li><a href="#">Brazil</a></li>
+                <li><a href="#">Pakistan</a></li>
+                <li><a href="#">Nigeria</a></li>
+                <li><a href="#">India</a></li>
+                <li><a href="#">Bangladesh</a></li>
+                <li><a href="#">Russia</a></li>
+                <li><a href="#">Mexico</a></li>
+                <li><a href="#">Japan</a></li>
+                <li><a href="#">Ethiopia</a></li>
+                <li><a href="#">Phillipines</a></li>
+                <li><a href="#">Egypt</a></li>
+                <li><a href="#">Viet Nam</a></li>
+                <li><a href="#">DR Congo</a></li>
+                <li><a href="#">Germany</a></li>
+                <li><a href="#">Iran</a></li>
+                <li><a href="#">Turkey</a></li>
+                <li><a href="#">Thailand</a></li>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">All</a>
+            </ul>
+        </div>
+        <!--<div class="btn-group">-->
+            <!--<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">-->
+                <!--Grain <span class="caret"></span></button>-->
+            <!--<ul class="dropdown-menu" role="menu">-->
+                <!--<li><a href="#">Barley</a></li>-->
+                <!--<li><a href="#">Maize</a></li>-->
+                <!--<li><a href="#">Millet</a></li>-->
+                <!--<li><a href="#">Rice</a></li>-->
+                <!--<li><a href="#">Wheat</a></li>-->
+                <!--<div class="dropdown-divider"></div>-->
+                <!--<a class="dropdown-item" href="#">All</a>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="btn-group">-->
+            <!--<button type="button" class="btn btn-alert dropdown-toggle" data-toggle="dropdown">-->
+                <!--Year <span class="caret"></span></button>-->
+            <!--<ul id="year" class="dropdown-menu" role="menu">-->
+                <!--<li><a href="#">1965</a></li>-->
+                <!--<li><a href="#">1970</a></li>-->
+                <!--<li><a href="#">1975</a></li>-->
+                <!--<li><a href="#">1980</a></li>-->
+                <!--<li><a href="#">1985</a></li>-->
+                <!--<li><a href="#">1990</a></li>-->
+                <!--<li><a href="#">1995</a></li>-->
+                <!--<li><a href="#">2000</a></li>-->
+                <!--<li><a href="#">2005</a></li>-->
+                <!--<li><a href="#">2010</a></li>-->
+                <!--<li><a href="#">2011</a></li>-->
+                <!--<li><a href="#">2012</a></li>-->
+                <!--<li><a href="#">2013</a></li>-->
+                <!--<div class="dropdown-divider"></div>-->
+                <!--<li><a class="dropdown-item" href="#">All</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <select id="grain">
+            <option value="wheat">wheat</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+        </select>
+
+
+        <select id="year">
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+        </select>
     </div>
-    <div class="btn-group">
-        <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-            Grain <span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Barley</a></li>
-            <li><a href="#">Maize</a></li>
-            <li><a href="#">Millet</a></li>
-            <li><a href="#">Rice</a></li>
-            <li><a href="#">Wheat</a></li>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">All</a>
-        </ul>
-    </div>
-    <div class="btn-group">
-        <button type="button" class="btn btn-alert dropdown-toggle" data-toggle="dropdown">
-            Year <span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#">1965</a></li>
-            <li><a href="#">1970</a></li>
-            <li><a href="#">1975</a></li>
-            <li><a href="#">1980</a></li>
-            <li><a href="#">1985</a></li>
-            <li><a href="#">1990</a></li>
-            <li><a href="#">1995</a></li>
-            <li><a href="#">2000</a></li>
-            <li><a href="#">2005</a></li>
-            <li><a href="#">2010</a></li>
-            <li><a href="#">2011</a></li>
-            <li><a href="#">2012</a></li>
-            <li><a href="#">2013</a></li>
-            <div class="dropdown-divider"></div>
-            <li><a class="dropdown-item" href="#">All</a></li>
-        </ul>
-    </div>
+
+
+
 </div>
 
 
 
-<div>
-    <h1 class="text-center"; style="font-family: Quicksand;">
-        Food Drought Nexus
-    </h1>
-</div>
+<!--<div>-->
+    <!--<h1 class="text-center"; style="font-family: Quicksand;">-->
+        <!--Food Drought Nexus-->
+    <!--</h1>-->
+<!--</div>-->
 
 
 
 
 
-<div>
-    <p class="text-center"; style="font-family: Quicksand;">Click on a country to show trade arrows/pick from the drop-down menu of countries.</p>
-    <br>
-    <p class="text-center"; style="font-family: Quicksand;">Change the year of the basemap to see how drought has affected the year.</p>
-</div>
+<!--<div>-->
+    <!--<p class="text-center"; style="font-family: Quicksand;">Click on a country to show trade arrows/pick from the drop-down menu of countries.</p>-->
+    <!--<br>-->
+    <!--<p class="text-center"; style="font-family: Quicksand;">Change the year of the basemap to see how drought has affected the year.</p>-->
+<!--</div>-->
 
 
 
@@ -287,37 +316,75 @@
 
 
 
-
-    var map = L.map("map", {zoomControl: false}).setView([30, 0], 2); // deactivate the zoomControl
+    var map = L.map("map", {zoomControl: false}).fitBounds([
+	    [49.3, -138.5],
+	    [22.8, -67.4]
+    ]);
     // construct a base map in light color.md.
+    var layergroup =L.layerGroup().addTo(map);
     L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png').addTo(map);
 
-    L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI20152_dry/tile_{z}_{x}-{y}.png').addTo(map);
+
+   var drought =  L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI20152_dry/tile_{z}_{x}-{y}.png').addTo(map);
 
 
 
-    //ADD IN color scheme overlay based on total production value???
-    //    colors = chroma.scale('RdPu').colors(5); //colors = chroma.scale('OrRd').colors(5);
+    $("#year").on("change", function(){
+// alert($(this).val());
+        var year = $(this).val();
+        drought.remove();
+        drought = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI' + year + '2_dry/tile_{z}_{x}-{y}.png');
+        drought.addTo(map);
+    })
 
-    //    function setColor(Value) {
-    //        var id = 0;
-    //        if (Value > 0) {
-    //            id = 4;
-    //        }
-    //        else if (Value > 13 && Value <= 18) {
-    //            id = 3;
-    //        }
-    //        else if (Value > 10 && Value <= 13) {
-    //            id = 2;
-    //        }
-    //        else if (Value > 5 && Value <= 10) {
-    //            id = 1;
-    //        }
-    //        else {
-    //            id = 0;
-    //        }
-    //        return colors[id];
-    //    }
+
+
+
+    $("#grain").on("change", function(){
+	    layergroup.clearLayers();
+	    var grain = $(this).val();
+
+        grain = 40;
+	    for (let i=0;i<kits.features.length;i++) {
+
+		    if (kits.features[i].properties.lat > grain) {
+
+			    lng = kits.features[i].geometry.coordinates[0];
+			    lat = kits.features[i].geometry.coordinates[1];
+
+
+			    layergroup.addLayer( L.swoopyArrow([45.505374, -122.978524], [lat, lng], {
+				    labelFontSize: 12,
+				    iconAnchor: [20, 10],
+				    iconSize: [30, 16],
+				    //color: '#fff20f',
+				    color: "red",
+				    opacity: 0.7,
+				    weight:'3'
+			    }));
+		    }
+
+
+	    }
+
+	    // layergroup2.addTo(map2);
+
+// // alert($(this).val());
+// 	    var grain = $(this).val();
+// 	    drought.remove();
+// 	    drought = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI' + year + '2_dry/tile_{z}_{x}-{y}.png');
+// 	    drought.addTo(map);
+
+
+
+
+
+    });
+
+
+
+
+
 
     function style() {
         return {
@@ -335,82 +402,82 @@
         style: style
     }).addTo(map); //...geojson, ([style: style}].addTo...
 
-    //
+
 
 
 
 //Need function to pull lat long of countries by selected button name and map-click, to insert into below function.
     // Add a function to differ line 'weight' (thickness) based on Value (tonnes).
-    L.swoopyArrow([33, -98], [53.525, 14.41], {
-        color: "#ffd100",
-        opacity: 0.7,
-        weight:'3'
-    }).addTo(map);
-
-
-    for(let i=0; i<kits.features.length; i++) {
-
-        setTimeout(function () {
-            lng = kits.features[i].geometry.coordinates[0];
-            lat = kits.features[i].geometry.coordinates[1];
-
-            L.swoopyArrow([-28, 134], [lat, lng], {
-                labelFontSize: 12,
-                iconAnchor: [20, 10],
-                iconSize: [30, 16],
-                color: '#ffd100',
-                opacity: 0.7,
-                weight:'3'
-            }).addTo(map);
-            // layergroup2.addLayer( L.marker([lat, lng], {icon: pwbIcon}));
-
-        }, 100 * i);
-    }
+    // L.swoopyArrow([33, -98], [53.525, 14.41], {
+    //     color: "#ffd100",
+    //     opacity: 0.7,
+    //     weight:'3'
+    // }).addTo(map);
+    //
+    //
+    // for(let i=0; i<kits.features.length; i++) {
+    //
+    //     setTimeout(function () {
+    //         lng = kits.features[i].geometry.coordinates[0];
+    //         lat = kits.features[i].geometry.coordinates[1];
+    //
+    //         L.swoopyArrow([-28, 134], [lat, lng], {
+    //             labelFontSize: 12,
+    //             iconAnchor: [20, 10],
+    //             iconSize: [30, 16],
+    //             color: '#ffd100',
+    //             opacity: 0.7,
+    //             weight:'3'
+    //         }).addTo(map);
+    //         // layergroup2.addLayer( L.marker([lat, lng], {icon: pwbIcon}));
+    //
+    //     }, 100 * i);
+    // }
 
 
 //CONVERT TO GEOJSON when lat longs are added to datasheet, then rename as data.geojson
-    d3.json('assets/FBS_Country_data.json').then(function(data) {
-
-        //////////////////////////////////////////////////PREP THE DATA////////////////////////////////////////////////////////
-        //create crossfilter passes each feature to the filter. We have to pass it through the crossfilter before we can split up with data using
-        //the .dimensions() method
-        var filter = crossfilter(data.features); //passes the features to the crossfilter
-
-        // groups everything together into one group, this is used to quickly search all of the data at once
-        var all = filter.groupAll();
-
-
-        //Takes each of the records of the dataset and returns each individual line so that they can be used. .dimension() puts
-        // the data into an easily searchable/manipulable format for DC
-        var everything = filter.dimension(function (d) {
-            return d
-        });
-
-        //////////////////////////////////////////////SORT THE DATA///////////////////////////////////////////////////////////
-        //Now that we have our initial data imported and in the right format using crossfilter we now have to sort out the data that we want to display, set up
-        //the chart space and populate the graphs
-
-        //returns the geometry for each feature; this is the points at which each earthquake happened
-        var geomDimension = filter.dimension(function (d) {
-            return d.geometry
-        });
-
-        //defines the categories from magnitude property
-        var valueDimension = filter.dimension(function (d) {
-
-            var value = d.properties.value;
-            valueClass = "> 15";
-
-            if (mag <= 6) {
-                valueClass = "<6"
-            } else if (mag > 1.2 && mag <= 15) {
-                valueClass = "1-15"
-            } else {
-                valueClass = ">15"
-            }
-            return valueClass;
-        });
-    })
+//     d3.json('assets/FBS_Country_data.json').then(function(data) {
+//
+//         //////////////////////////////////////////////////PREP THE DATA////////////////////////////////////////////////////////
+//         //create crossfilter passes each feature to the filter. We have to pass it through the crossfilter before we can split up with data using
+//         //the .dimensions() method
+//         var filter = crossfilter(data.features); //passes the features to the crossfilter
+//
+//         // groups everything together into one group, this is used to quickly search all of the data at once
+//         var all = filter.groupAll();
+//
+//
+//         //Takes each of the records of the dataset and returns each individual line so that they can be used. .dimension() puts
+//         // the data into an easily searchable/manipulable format for DC
+//         var everything = filter.dimension(function (d) {
+//             return d
+//         });
+//
+//         //////////////////////////////////////////////SORT THE DATA///////////////////////////////////////////////////////////
+//         //Now that we have our initial data imported and in the right format using crossfilter we now have to sort out the data that we want to display, set up
+//         //the chart space and populate the graphs
+//
+//         //returns the geometry for each feature; this is the points at which each earthquake happened
+//         var geomDimension = filter.dimension(function (d) {
+//             return d.geometry
+//         });
+//
+//         //defines the categories from magnitude property
+//         var valueDimension = filter.dimension(function (d) {
+//
+//             var value = d.properties.value;
+//             valueClass = "> 15";
+//
+//             if (mag <= 6) {
+//                 valueClass = "<6"
+//             } else if (mag > 1.2 && mag <= 15) {
+//                 valueClass = "1-15"
+//             } else {
+//                 valueClass = ">15"
+//             }
+//             return valueClass;
+//         });
+//     })
 
 
 
