@@ -249,8 +249,8 @@
     <img src="img/dscale.PNG" width="200">
     <br/>
     <br>
-    <i class="fa fa-share-square"></i><div> Click on a country to display trade lines, or filter the criteria through the drop-down menus, below.</div>
-    <i class="fa fa-question-circle"></i><div> Is there any relationship with the underlying Annual Drought maps? </div><br>
+    <i class="fa fa-share-square" style="font-size:20px;color:#ff3847;"></i><div> Click on a country to display trade lines, or filter the criteria through the drop-down menus, below.</div>
+    <i class="fa fa-question-circle" style="font-size:20px;color:purple;"></i><div> Is there any relationship with the underlying Annual Drought maps? </div><br>
 
 
 
@@ -270,28 +270,28 @@
         <!--</div>-->
 
 
-        <select id="country">
-            <option value="Barley">China</option>
-            <option value="Maize">India</option>
-            <option value="Millet">United States</option>
-            <option value="Rice">Brazil</option>
-            <option value="Wheat">Pakistan</option>
-            <option value="Barley">Nigeria</option>
-            <option value="Maize">India</option>
-            <option value="Millet">Bangladesh</option>
-            <option value="Millet">Russia</option>
-            <option value="Millet">Mexico</option>
-            <option value="Rice">Japan</option>
-            <option value="Wheat">Ethiopia</option>
-            <option value="Barley">Phillipines</option>
-            <option value="Rice">Egypt</option>
-            <option value="Wheat">Viet Nam</option>
-            <option value="Barley">DR Congo</option>
-            <option value="Maize">Germany</option>
-            <option value="Millet">Iran</option>
-            <option value="Rice">Turkey</option>
-            <option value="Wheat">Thailand</option>
-        </select>
+    <select id="country">
+        <option value="China">China</option>
+        <option value="India">India</option>
+        <option value="United States">United States</option>
+        <option value="Brazil">Brazil</option>
+        <option value="Pakistan">Pakistan</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="India">India</option>
+        <option value="Bangladesh">Bangladesh</option>
+        <option value="Russia">Russia</option>
+        <option value="Mexico">Mexico</option>
+        <!--<option value="Japan">Japan</option>-->
+        <!--<option value="Ethiopia">Ethiopia</option>-->
+        <!--<option value="Phillipines">Phillipines</option>-->
+        <!--<option value="Egypt">Egypt</option>-->
+        <!--<option value="Viet Nam">Viet Nam</option>-->
+        <!--<option value="DR Congo">DR Congo</option>-->
+        <!--<option value="Germany">Germany</option>-->
+        <!--<option value="Iran">Iran</option>-->
+        <!--<option value="Turkey">Turkey</option>-->
+        <!--<option value="Thailand">Thailand</option>-->
+    </select>
 
         <select id="grain">
             <option value="Barley">Barley</option>
@@ -346,6 +346,10 @@
    var drought =  L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI19807_dry/tile_{z}_{x}-{y}.png').addTo(map);
    var droughtw = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI19807_wet/tile_{z}_{x}-{y}.png').addTo(map);
 
+
+
+
+   //COUNTRY selector code may go into Forcegraph JS.
 
 
     $("#year").on("change", function(){
