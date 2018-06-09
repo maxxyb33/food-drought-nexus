@@ -52,6 +52,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            text-shadow: 2px 0 #ffcd5c, 0 1px #ffcd5c, 1px 0 #ffcd5c, 0 -1px #ffcd5c;
+            font-weight: bold;
         }
         .overlay-desc-sub {
             background: rgba(0,0,0,0);
@@ -60,10 +62,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            text-shadow: 1px 0 #5e3e1d, 0 0px #5e3e1d, 1px 0 #ffcd5c, 0 -1px #ffcd5c;
+            font-weight: bold;
         }
+        .overlay-desc-sub2 {
+            background: rgba(0,0,0,0);
+            position: absolute;
+            top: 45%; right: 0; bottom: 0; left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 1px 0 #5e3e1d, 0 0px #5e3e1d, 1px 0 #ffcd5c, 0 -1px #ffcd5c;
+            font-weight: bold;
+            font-size: 2vw;
+        }
+
+
         h1 {
             color: white;
-            font-family: "Righteous";
+            font-family: "Righteous", sans-serif;
             font-size: 8vw;
             text-align: center;
         }
@@ -75,13 +92,14 @@
 
         p {;
             color: white;
-            font-family: Quicksand;
+            font-family: "Krona One", sans-serif;
             z-index: 2000;
-            font-size: 1.1rem;
             font-weight: bold;
             line-height: 1.7rem;
             text-align: center;
+            font-size: 2vw;
         }
+
         .btn{
         position: absolute;
         top: 80%;
@@ -89,18 +107,33 @@
         z-index: 2000;
         transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
+            text-shadow: 2px 0 #fffaf1, 0 1px #fffaf1, 1px 0 #5e3e1d, 0 -1px #ffcd5c;
         background-color: #ffcd5c;
-        color: #1f1f1f;
+        color: #5e3e1d;
         font-size: 16px;
+            font-weight: bold;
         padding: 12px 14px;
         border: none;
         cursor: pointer;
         border-radius: 5px;
+
         }
         .btn:hover {
             background-color: #cc8740;
             color: #fff4be;
         }
+
+        #text {
+            color: white;
+            font-family: "Quicksand", sans-serif;
+            z-index: 2000;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.6vw;
+            font-style: italic;
+            text-shadow: 1px 0 #5e3e1d, 0 1px #5e3e1d, 1px 0 #5e3e1d, 0 -1px #ffcd5c;
+        }
+
 
     </style>
     <!--add required stylesheets-->
@@ -111,7 +144,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 </head>
-<body>
+<body onmousemove="myFunction()">
 <!--add a Bootstrap navbar-->
 <nav class="navbar navbar-expand-lg navbar-light bg-custom">
 
@@ -136,7 +169,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="map.html">Nexus Map</a>
             </li>
-
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="force.html" role="button" data-toggle="dropdown" >3D Network</a>
@@ -189,11 +221,13 @@
 
 
 
-    <div class="overlay-desc">
+<div class="overlay-desc" >
         <h1>Cereal Migrations</h1></div>
     <div class="overlay-desc-sub">    <br>
         <p>Tracking the Global Cereal Trade</p></div>
-
+    <div class="overlay-desc-sub2">
+        <p id="text"></p>
+    </div>
     <div><a class="btn btn-warning btn-lg float-right" href="map.html" role="button">Explore</a></div>
 
 
@@ -204,7 +238,15 @@
 </video>
 
 
-
+<script>
+    document.getElementById("text").onmousemove = function(event) {myFunction(event)}
+    function myFunction() {
+        var desc = "Take a look at the international trade of Wheat, Rice, Barley, Millet, and Maize across various cutting-edge modern geovisual platforms, and decide for yourself whether 'Cereal Migrations' may soon be followed by 'Surreal Migrations'...";
+        document.getElementById("text").innerHTML = desc;
+    }
+//add timing delay of added text!!!!   setTimeout(myFunction, 1000);
+;
+</script>
 
 
 </body>
