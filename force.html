@@ -346,14 +346,14 @@
 
 
 	//camera orbit
-	let angle = 0;
-	setInterval(() => {
-		Graph.cameraPosition({
-			x: distance * Math.sin(angle),
-			z: distance * Math.cos(angle)
-		});
-		angle += Math.PI / 300;
-	}, 40);
+	// let angle = 0;
+	// setInterval(() => {
+	// 	Graph.cameraPosition({
+	// 		x: distance * Math.sin(angle),
+	// 		z: distance * Math.cos(angle)
+	// 	});
+	// 	angle += Math.PI / 300;
+	// }, 40);
 
 
    document.getElementById("3d-graph").onclick = function(event) {myFunction(event)}

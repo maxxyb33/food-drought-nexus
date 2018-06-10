@@ -1,10 +1,389 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <meta charset="utf-8">
+    <title>Force Graph - BRAZIL</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--add favicon for the web page-->
 
-</body>
+    <link rel="shortcut icon" href="img/logo.ico?" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand|Krona+One|Titillium+Web|Righteous" rel="stylesheet">
+    <style>
+        html, body { width: 100%; height: 100%; margin: 0; background: #fffaf1; font-family: "Quicksand", sans-serif; font-weight: bold; color: #5e3e1d;}
+
+
+        nav{
+            z-index: 2000;
+            font-size: larger;
+        }
+
+        .bg-custom {
+            /*background-color: rgba(109, 63, 15, 0.8);*/
+            background: linear-gradient(to bottom right, #cc8740, rgba(255, 205, 92, 0.89));
+        }
+
+
+        .info-panel {
+            line-height: 16px;
+            width: 23% /*300px*/;
+            position: absolute;
+            z-index: 1000;
+            left: 10px;
+            bottom: 2%;
+            color: #070707;
+            padding: 6px 8px;
+            background: rgba(243, 243, 243, 0.73);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            text-align: justify;
+        }
+        .info-panel i {
+            width: 16px;
+            height: 14px;
+            line-height: 18px;
+            float: left;
+            margin-top: 2px;
+            margin-right: 5px;
+            opacity: 0.7;
+        }
+        .info-panel p {
+            font-size: 18px;
+            line-height: 16px;
+            margin: 0;
+        }
+
+        #3d-graph {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index:1;     /*a larger z-index than the container*/
+            display: block;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-color: #f5f5f5;
+        }
+
+        li.dropdown:last-child .dropdown-menu {
+            right: 0;
+            left: auto;
+        }
+
+        .overlay-desc {
+            z-index: 200;
+            background: rgba(0,0,0,0);
+            position: absolute;
+            top: 0; right: 0; bottom: 65%; left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center; !important;
+        }
+        .overlay-desc-sub {
+            z-index: 200;
+            background: rgba(0,0,0,0);
+            position: absolute;
+            top: 0; right: 0; bottom: -94%; left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        p {;
+            color: white;
+            font-family: "Quicksand", sans-serif; !important;
+            z-index: 2000;
+            font-size: 1.1rem;
+            font-weight: bold;
+            line-height: 1.7rem;
+            text-align: center;
+        }
+
+        main {
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        h1 {
+            text-align: left;
+            text-shadow: 2px 0 #ffcd5c, 0 1px #ffcd5c, 1px 0 #ffcd5c, 0 -1px #ffcd5c;
+            font-weight: bold;
+        }
+
+        #h1a {
+            text-align: right;
+            text-shadow: 2px 0 #fffaf1, 0 1px #fffaf1, 1px 0 #ffcd5c, 0 -1px #ffcd5c;
+            font-weight: bold;
+        }
+
+        h6 {
+            background-color: rgba(255, 205, 92, 0.89);
+        }
+
+        .btn-light{
+            z-index: 2000;
+            /*text-shadow: 1px 0 #5e3e1d, 0 1px #211853, 1px 0 #ffcd5c, 0 -1px #1d1c1c;*/
+            background-color: rgb(249, 245, 235);
+            color: #211853;
+            border: 1px solid #000000;
+            border-radius: 0px;
+            cursor: pointer;
+
+        }
+
+        .max{
+            z-index: 2000;!important;
+            text-shadow: 1px 0 #ffcd5c, 0 1px #ffcd5c, 1px 0 #ffcd5c, 0 -1px #1d1c1c;
+            background-color: rgb(255, 239, 190);!important;
+            color: #633e11;!important;
+            border: 1px solid #000000;!important;
+            border-radius: 1px;!important;
+            cursor: pointer;!important;
+            font-size: 1.5vw; !important;
+            line-height: 1.1; !important;
+        }
+
+
+
+    </style>
+    <!--add required stylesheets-->
+    <script src="//unpkg.com/three"></script>
+    <script src="//unpkg.com/three-spritetext"></script>
+    <script src="https://unpkg.com/3d-force-graph@1.31.4/dist/3d-force-graph.js"></script>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+</head>
+<body onclick="myFunction()">
+<!--add a Bootstrap navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-custom">
+
+    <!--<div class="container-fluid">-->
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <a class="navbar-brand" href="index.html">
+        <!--convert the style value to a class and then add the class to the css file.-->
+        <img src="img/logo.svg"  width="15%" class="d-inline-block align-top">
+    </a>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse">
+        <!--Create class ml-auto for the navbar items you want on the right.-->
+
+        <ul class="navbar-nav ml-auto">
+
+            <!--a drop-down menu-->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <!--a simple top bar link-->
+            <li class="nav-item">
+                <a class="nav-link" href="map.html">Nexus Map</a>
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="force.html" role="button" data-toggle="dropdown" >3D Network</a>
+                <div class="dropdown-menu" >
+                    <a class="dropdown-item" href="force.html"><b>Top 10 Populations</b></a>
+                    <a class="dropdown-item dropdown-toggle dropdown-submenu" href="force1.html"><b>Filter Country</b></a>
+                    <ul>
+                        <a class="dropdown-item" href="force-chi.html">1. China</a>
+                        <a class="dropdown-item" href="force-ind.html">2. India</a>
+                        <a class="dropdown-item" href="force-usa.html">3. United States</a>
+                        <a class="dropdown-item" href="force-ina.html">4. Indonesia</a>
+                        <a class="dropdown-item" href="force-bra.html">5. Brazil</a>
+                        <a class="dropdown-item" href="force-pak.html">6. Pakistan</a>
+                        <a class="dropdown-item" href="force-nig.html">7. Nigeria</a>
+                        <a class="dropdown-item" href="force-ban.html">8. Bangladesh</a>
+                        <a class="dropdown-item" href="force-rus.html">9. Russia</a>
+                        <a class="dropdown-item" href="force-mex.html">10. Mexico</a>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="sankey.html">Sankey</a>
+            </li>
+            <!--an about page-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >About</a>
+                <div class="dropdown-menu" >
+                    <!--use flag icons ??  or insert small thumbnail photo of flag-->
+                    <a class="dropdown-item" href="about-us.html"> Website & Data</a>
+                    <a class="dropdown-item" href="http://geoviz.ceoas.oregonstate.edu/neocarto/"> Neocarto</a>
+                    <a class="dropdown-item" href="https://github.com/jakobzhao/geog4572"> GEOG 4/572 </a>
+                </div>
+            </li>
+        </ul>
+        <!--<nav class="navbar navbar-dark bg-custom">-->
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">-->
+        <!--<span class="navbar-toggler-icon"></span>-->
+        <!--</button>-->
+        <!--</nav>-->
+    </div>
+</nav>
+<!--CONTENT PAGE HERE-->
+<!--CONTENT PAGE HERE-->
+<!--CONTENT PAGE HERE-->
+<!--CONTENT PAGE HERE-->
+<!--CONTENT PAGE HERE-->
+
+
+<div class="overlay-desc">
+    <h1 id="h1a">Trade Links for Brazil</h1></div>
+<!--<div class="overlay-desc-sub">-->
+<!--<p>d3 Forcegraph</p></div>-->
+
+
+
+<div id="3d-graph"></div>
+
+
+
+<!--LEGEND info panel-->
+<div class="info-panel">
+    <h1>Trade Network</h1>
+    <h6><b> d3 Force-Directed Graph </b></h6>
+    <!-- legend patch items -->
+    <!--place holder-->
+    <br>
+    <i class="fa fa-mouse-pointer" style="font-size:20px;color:#5e3e1d;"></i><div> Drag nodes to examine relationships.</div><br>
+    <i class="fa fa-ellipsis-h" style="font-size:20px;color:#ffcd5c;"></i><div> Particle speed is directional and proportional to amount traded (tonnes). </div><br>
+
+
+    <div class="btn-group">
+        <div class="btn-group">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+                Brazil <span class="caret"></span></button>
+            <ul class="dropdown-menu max" role="menu">
+                <li><a href="force-chi.html">China</a></li>
+                <li><a href="force-ind.html">India</a></li>
+                <li><a href="force-usa.html">United States</a></li>
+                <li><a href="force-ina.html">Indonesia</a></li>
+                <li><a href="force-bra.html">Brazil</a></li>
+                <li><a href="force-pak.html">Pakistan</a></li>
+                <li><a href="force-nig.html">Nigeria</a></li>
+                <li><a href="force-ban.html">Bangladesh</a></li>
+                <li><a href="force-rus.html">Russia</a></li>
+                <li><a href="force-mex.html">Mexico</a></li>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="force.html">All</a>
+            </ul>
+
+
+            <!--<select id="country">-->
+            <!--<option value="All">All Selected</option>-->
+            <!--<option value="China">China</option>-->
+            <!--<option value="India">India</option>-->
+            <!--<option value="United States">United States</option>-->
+            <!--<option value="Indonesia">Indonesia</option>-->
+            <!--<option value="Brazil">Brazil</option>-->
+            <!--<option value="Pakistan">Pakistan</option>-->
+            <!--<option value="Nigeria">Nigeria</option>-->
+            <!--<option value="Bangladesh">Bangladesh</option>-->
+            <!--<option value="Russia">Russia</option>-->
+            <!--<option value="Mexico">Mexico</option>-->
+            <!--<option value="Japan">Japan</option>-->
+            <!--<option value="Ethiopia">Ethiopia</option>-->
+            <!--<option value="Phillipines">Phillipines</option>-->
+            <!--<option value="Egypt">Egypt</option>-->
+            <!--<option value="Viet Nam">Viet Nam</option>-->
+            <!--<option value="DR Congo">DR Congo</option>-->
+            <!--<option value="Germany">Germany</option>-->
+            <!--<option value="Iran">Iran</option>-->
+            <!--<option value="Turkey">Turkey</option>-->
+            <!--&lt;!&ndash;<option value="Thailand">Thailand</option>&ndash;&gt;-->
+            <!--</select>-->
+
+        </div>
+
+
+
+        <script>
+
+            var top10 = 'assets/imports.json';
+            var China = '';
+            var India = '';
+            var UnitedStates = '';
+            var Brazil = '';
+            var Pakistan = '';
+            var Nigeria = '';
+            var India = '';
+            var Bangladesh = '';
+            var Russia = '';
+            var Mexico = '';
+
+
+
+
+
+            const distance = 1000;
+            const Graph = ForceGraph3D()
+            (document.getElementById('3d-graph'))
+                .jsonUrl(top10)
+                // .nodeLabel('id')
+                .nodeAutoColorBy('group')
+                .linkDirectionalParticles("value")
+                .linkDirectionalParticleSpeed(d => d.value * 0.001)
+                .enableNodeDrag(true)
+                .cameraPosition({ z: distance })
+                .nodeThreeObject(node => {
+                    const sprite = new SpriteText(node.id);
+                    sprite.color = node.color;
+                    sprite.textHeight = 15;
+                    return sprite;
+                });
+
+
+            Graph.d3Force('charge').strength(-600);
+
+
+            //camera orbit
+            let angle = 0;
+            setInterval(() => {
+                Graph.cameraPosition({
+                    x: distance * Math.sin(angle),
+                    z: distance * Math.cos(angle)
+                });
+                angle += Math.PI / 300;
+            }, 40);
+
+
+            document.getElementById("3d-graph").onclick = function(event) {myFunction(event)}
+            function myFunction() {
+
+                //var camera = $("cameraPosition").stop();
+
+
+
+
+
+                $(window).on("resize", function () {
+                    var width = $(window).width();
+                    Graph.width(width)
+                })
+
+                //
+                // $("#country").change(function () {
+                //     $("#3d-graph").remove();
+
+                //if/for statement for each of 10 countries; if China, load force-china.html
+
+// alert($(this).val());
+//          var country = $(this).val();
+//          top10.remove();
+//          add();
+//         droughtw = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI' + year + '7_wet/tile_{z}_{x}-{y}.png');
+//         droughtw.addTo(map);
+            }
+
+        </script>
+    </div></div></body></body>
 </html>
