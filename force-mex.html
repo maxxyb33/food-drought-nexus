@@ -22,6 +22,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 
 </head>
 <body onclick="myFunction()">
@@ -170,7 +171,44 @@
             <!--</select>-->
 
         </div>
+    </div>
+</div>
 
+<!--STREAM GRAPH-->
+<div class="info-panel-l">
+    <h2 class="h2info">Mexico Cereal Imports</h2>
+    <h3><b>1965-2013</b></h3>
+    <h6 align="center"><i class="fa fa-mouse-pointer" style="font-size:20px;color:#5e3e1d;"></i>
+        <b> (Mouse-over to see Grain Type) </b></h6>
+    <h5 align="center">Year</h5>
+    <!-- legend patch items -->
+    <!--place holder-->
+    <div class="stream"></div>
+
+    <h4 align="center" id="major"><b>Grain Type</b></h4>
+
+
+    <div class="btn-group">
+        <div class="btn-group">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+                Select Country <span class="caret"></span></button>
+            <ul class="dropdown-menu max" role="menu">
+                <li><a href="force-chi.html">China</a></li>
+                <li><a href="force-ind.html">India</a></li>
+                <li><a href="force-usa.html">United States</a></li>
+                <li><a href="force-ina.html">Indonesia</a></li>
+                <li><a href="force-bra.html">Brazil</a></li>
+                <li><a href="force-pak.html">Pakistan</a></li>
+                <li><a href="force-nig.html">Nigeria</a></li>
+                <li><a href="force-ban.html">Bangladesh</a></li>
+                <li><a href="force-rus.html">Russia</a></li>
+                <li><a href="force-mex.html">Mexico</a></li>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="force.html">All</a>
+            </ul>
+        </div>
+    </div>
+</div>
 
 
         <script>
@@ -251,6 +289,126 @@
 //         droughtw.addTo(map);
             }
 
+            d3.csv('assets/stream_import_ban.csv', function(err, d){
+                if(err) console.log(err);
+                console.log(d)
+
+                var nested_data = d3.nest()
+                    .key(function(d) { return d.Year; })
+                    .entries(d);
+
+                console.log(nested_data);
+
+                var mqpdata = nested_data.map(function(d){
+                    var obj = {
+                        yearobj: new Date(d.key, 0, 1)
+                    }
+
+                    d.values.forEach(function(v){
+                        obj[v.Item] = v.Value;
+                        console.log(d.Value)
+                    })
+
+                    return obj;
+                })
+
+                buildStreamGraph(mqpdata);
+
+            });
+
+
+            function buildStreamGraph(mqpdata) {
+                var data = mqpdata;
+
+
+                var stack = d3.stack()
+                    .keys(["Barley", "Maize", "Millet", "Rice", "Wheat"])
+                    .order(d3.stackOrderNone)
+                    .offset(d3.stackOffsetWiggle);
+
+                var series = stack(data);
+
+                var width = 350,
+                    height = 250;
+
+                var x = d3.scaleTime()
+                    .domain(d3.extent(data, function (d) {
+                        return d.yearobj;
+                    }))
+                    .range([25, width-50]);
+
+// setup axis
+                var xAxis = d3.axisBottom(x);
+
+                var y = d3.scaleLinear()
+                    .domain([0, d3.max(series, function (layer) {
+                        return d3.max(layer, function (d) {
+                            return d[0] + d[1];
+                        });
+                    })])
+                    .range([height / 2, 50]);
+
+                var color = d3.scaleLinear()
+                    .range(["#a96920", "#ffcd5c"]);
+
+                // var color = d3.scaleOrdinal(d3.schemeCategory10); //color = d3.interpolateCool/Warm/Plasma etc., https://github.com/d3/d3-scale-chromatic for other colors
+
+                var area = d3.area()
+                    .x(function (d) {
+                        console.info('in area function', d);
+                        return x(d.data.yearobj);
+                    })
+                    .y0(function (d) {
+                        return y(d[0]);
+                    })
+                    .y1(function (d) {
+                        return y(d[1]);
+                    })
+                    .curve(d3.curveBasis);
+
+                var tooltip = d3.select("body").append("div")
+                    .attr("class", "tooltip");
+
+                var svg = d3.select(".stream").append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+                svg.selectAll("path")
+                    .data(series)
+                    .enter().append("path")
+                    .attr("d", area)
+                    .style("fill", function () {
+                        return color(Math.random());
+                    })
+                    .on('mouseover', function (d) {
+                        d3.select(this).style('fill', d3.rgb(d3.select(this).style("fill")).brighter());
+                        d3.select("#major").text("Grain: " + d.key);
+                        tooltip.transition()
+                            .duration(700)
+                            .style("opacity", 1);
+                        tooltip.html(d.key)
+                            .style("left", (d3.event.pageX + 5) + "px")
+                            .style("top", (d3.event.pageY - 28) + "px");
+                    })
+                    .on('mouseout', function (d) {
+                        d3.select(this).style('fill',
+                            d3.rgb(d3.select(this).style("fill")).darker());
+                        d3.select("#major").text("Grain: ");
+                        tooltip.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                    });
+
+                svg.append("g")
+                    .attr("class", "axis axis--x")
+                    .attr("transform", "translate(0," + (height) + ")")
+                    .call(xAxis);
+
+                var xAxisGroup = svg.append("g").call(xAxis);
+
+            }
+
+
         </script>
-    </div></div></body></body>
+</body>
 </html>
