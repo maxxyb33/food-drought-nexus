@@ -1,0 +1,56 @@
+{
+  "nodes": [
+    {"id": "Argentina", "group": 2},
+    {"id": "Australia", "group": 6},
+    {"id": "Bangladesh", "group": 4},
+    {"id": "Bulgaria", "group": 3},
+    {"id": "Canada", "group": 1},
+    {"id": "China","group": 4},
+    {"id": "Germany", "group": 3},
+    {"id": "India", "group": 4},
+    {"id": "Japan", "group": 4},
+    {"id": "Myanmar", "group": 4},
+    {"id": "Nepal", "group": 4},
+    {"id": "Pakistan", "group": 4},
+    {"id": "Philippines","group": 4},
+    {"id": "Republic of Korea", "group": 4},
+    {"id": "Russian Federation", "group": 3},
+    {"id": "Saudi Arabia", "group": 4},
+    {"id": "Singapore", "group": 4},
+    {"id": "Sri Lanka", "group": 4},
+    {"id": "Switzerland", "group": 3},
+    {"id": "Taiwan", "group": 4},
+    {"id": "Thailand", "group": 4},
+    {"id": "Ukraine","group": 3},
+    {"id": "United States of America", "group": 1},
+    {"id": "Vietnam", "group": 4}
+
+
+  ],
+  "links": [
+    {"source": "Bangladesh", "target": "Argentina", "value": 1},
+    {"source": "Bangladesh", "target": "Australia", "value": 5},
+    {"source": "Bangladesh", "target": "Bulgaria", "value": 1},
+    {"source": "Bangladesh", "target": "Canada", "value": 1},
+    {"source": "Bangladesh", "target": "China", "value": 2},
+    {"source": "Bangladesh", "target": "Germany", "value": 2},
+    {"source": "Bangladesh", "target": "India", "value": 4},
+    {"source": "Bangladesh", "target": "Japan", "value": 1},
+    {"source": "Bangladesh", "target": "Myanmar", "value": 2},
+    {"source": "Bangladesh", "target": "Nepal", "value": 2},
+    {"source": "Bangladesh", "target": "Pakistan", "value": 3},
+    {"source": "Bangladesh", "target": "Philippines", "value": 1},
+    {"source": "Bangladesh", "target": "Republic of Korea", "value": 1},
+    {"source": "Bangladesh", "target": "Russian Federation", "value": 1},
+    {"source": "Bangladesh", "target": "Saudi Arabia", "value": 1},
+    {"source": "Bangladesh", "target": "Singapore", "value": 1},
+    {"source": "Bangladesh", "target": "Sri Lanka", "value": 1},
+    {"source": "Bangladesh", "target": "Switzerland", "value": 1},
+    {"source": "Bangladesh", "target": "Taiwan", "value": 1},
+    {"source": "Bangladesh", "target": "Thailand", "value": 3},
+    {"source": "Bangladesh", "target": "Ukraine", "value": 1},
+    {"source": "Bangladesh", "target": "United States of America", "value": 3},
+    {"source": "Bangladesh", "target": "Vietnam", "value": 2}
+
+  ]
+}

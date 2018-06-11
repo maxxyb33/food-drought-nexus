@@ -1,0 +1,45 @@
+{
+  "nodes": [
+    {"id": "Argentina", "group": 2},
+    {"id": "Australia", "group": 6},
+    {"id": "Belgium", "group": 3},
+    {"id": "Bhutan", "group": 4},
+    {"id": "Canada", "group": 1},
+    {"id": "China","group": 4},
+    {"id": "France", "group": 3},
+    {"id": "Germany", "group": 3},
+    {"id": "India", "group": 4},
+    {"id": "Italy", "group": 3},
+    {"id": "Mauritius","group": 5},
+    {"id": "Nauru", "group": 6},
+    {"id": "Netherlands", "group": 3},
+    {"id": "Nigeria", "group": 5},
+    {"id": "Somalia", "group": 5},
+    {"id": "Thailand", "group": 4},
+    {"id": "Togo", "group": 5},
+    {"id": "United Kingdom", "group": 3},
+    {"id": "United States of America", "group": 1}
+
+  ],
+  "links": [
+    {"source": "Nigeria", "target": "Argentina", "value": 1},
+    {"source": "Nigeria", "target": "Australia", "value": 1},
+    {"source": "Nigeria", "target": "Belgium", "value": 1},
+    {"source": "Nigeria", "target": "Bhutan", "value": 1},
+    {"source": "Nigeria", "target": "Canada", "value": 1},
+    {"source": "Nigeria", "target": "China", "value": 1},
+    {"source": "Nigeria", "target": "France", "value": 2},
+    {"source": "Nigeria", "target": "Germany", "value": 2},
+    {"source": "Nigeria", "target": "India", "value": 1},
+    {"source": "Nigeria", "target": "Italy", "value": 1},
+    {"source": "Nigeria", "target": "Mauritius", "value": 1},
+    {"source": "Nigeria", "target": "Nauru", "value": 1},
+    {"source": "Nigeria", "target": "Netherlands", "value": 2},
+    {"source": "Nigeria", "target": "Somalia", "value": 1},
+    {"source": "Nigeria", "target": "Thailand", "value": 2},
+    {"source": "Nigeria", "target": "Togo", "value": 1},
+    {"source": "Nigeria", "target": "United Kingdom", "value": 2},
+    {"source": "Nigeria", "target": "United States of America", "value": 3}
+
+  ]
+}
