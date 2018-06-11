@@ -289,7 +289,7 @@
 //         droughtw.addTo(map);
             }
 
-            d3.csv('assets/stream_import_ban.csv', function(err, d){
+            d3.csv('assets/stream_import_ina.csv', function(err, d){
                 if(err) console.log(err);
                 console.log(d)
 
@@ -346,7 +346,7 @@
                             return d[0] + d[1];
                         });
                     })])
-                    .range([height / 2, 50]);
+                    .range([height / 1.5, -20]);
 
                 var color = d3.scaleLinear()
                     .range(["#a96920", "#ffcd5c"]);

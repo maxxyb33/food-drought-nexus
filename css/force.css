@@ -49,6 +49,7 @@ nav{
     line-height: 10px;
     min-width: 20%; /*290 px*/
     max-width: 25%;
+    max-height: 80%;
     /*width: 23% 300px*/;
     position: absolute;
     z-index: 1000;
