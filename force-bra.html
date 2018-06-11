@@ -210,19 +210,7 @@
 
         <script>
 
-            var top10 = 'assets/imports.json';
-            var China = '';
-            var India = '';
-            var UnitedStates = '';
-            var Brazil = '';
-            var Pakistan = '';
-            var Nigeria = '';
-            var India = '';
-            var Bangladesh = '';
-            var Russia = '';
-            var Mexico = '';
-
-
+            var top10 = 'assets/importsbrazil.json';
 
 
 
@@ -239,12 +227,14 @@
                 .nodeThreeObject(node => {
                     const sprite = new SpriteText(node.id);
                     sprite.color = node.color;
-                    sprite.textHeight = 15;
+                    sprite.textHeight = 20;
                     return sprite;
                 });
 
 
-            Graph.d3Force('charge').strength(-600);
+            Graph.d3Force('charge').strength(-8000);
+
+
 
 
             //camera orbit
