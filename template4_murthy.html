@@ -20,7 +20,7 @@
             z-index: 1000;
             position: absolute;
             right: 20px;
-            top: 100px;
+            top: 150px;
             padding: 6px 8px;
             font: 14px Arial, Helvetica, sans-serif;
             text-align: right;
@@ -64,25 +64,6 @@
         }*/
         /*legend panel*/
         .legend {
-            z-index: 1000;
-            position: absolute;
-            right: 20px;
-            bottom: 100px;
-            padding: 6px 8px;
-            font: 14px Arial, Helvetica, sans-serif;
-            background: white;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-        }
-        .legend i {
-            width: 18px;
-            height: 16px;
-            float: left;
-            margin-right: 8px;
-            opacity: 0.7;
-        }
-                .legend {
             z-index: 1000;
             position: absolute;
             right: 20px;
@@ -207,7 +188,6 @@
         }
 
 
-
     </style>
     <!--add required stylesheets-->
     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
@@ -228,54 +208,80 @@
 <body>
 
 <!--add a Bootstrap navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-        <!--<div class="container-fluid">-->
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <a class="navbar-brand" href="#">
-            <!--convert the style value to a class and then add the class to the css file.-->
-            <img src="img/logo.png"  width="10%" class="d-inline-block align-top">
-        </a>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
-            <!--Create class ml-auto for the navbar items you want on the right.-->
-            <ul class="navbar-nav ml-auto" >
-                <!--a simple top bar link-->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Topic 1</a>
-                </li>
-                <!--a top bar link which opens the url in a new page-->
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Topic 2</a>
-                </li>
-                <!--a drop-down menu-->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >Share To...</a>
-                    <div class="dropdown-menu" >
-                        <!--use font awesome icons-->
-                        <a class="dropdown-item" href="#"> <i class="fa fa-facebook-square"></i> Facebook</a>
-                        <a class="dropdown-item" href="#"> <i class="fa fa-twitter-square"></i> Twitter</a>
-                        <a class="dropdown-item" href="#"> <i class="fa fa-link"></i> Short Url </a>
-                    </div>
-                </li>
 
-                <!--use icons in the top bar menu-->
-                <li>
-                    <a class="nav-link" href="#"> <i class="fa fa-github fa-lg"></i>&nbsp;&nbsp;<span>Source Codes</span></a>
-                </li>
-                <!--an about page which open the url in a new page-->
-                <li>
-                    <a class= "nav-link" href="template3.html" target="_self">About</a>
-                </li>
-            </ul>
-            <nav class="navbar navbar-dark bg-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </nav>
-        </div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-custom">
+
+    <!--<div class="container-fluid">-->
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <a class="navbar-brand" href="index.html">
+        <!--convert the style value to a class and then add the class to the css file.-->
+        <img src="img/logo.svg"  width="15%" class="d-inline-block align-top">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!--Create class ml-auto for the navbar items you want on the right.-->
+
+        <ul class="navbar-nav ml-auto">
+
+            <!--a drop-down menu-->
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <!--a simple top bar link-->
+            <li class="nav-item">
+                <a class="nav-link" href="map.html">Nexus Map</a>
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="force.html" role="button" data-toggle="dropdown" >3D Network</a>
+                <div class="dropdown-menu" >
+                    <a class="dropdown-item" href="force.html"><b>Top 10 Populations</b></a>
+                    <a class="dropdown-item dropdown-toggle dropdown-submenu" href="force.html"><b>Filter Country</b></a>
+                    <ul>
+                        <a class="dropdown-item" href="force-chi.html">1. China</a>
+                        <a class="dropdown-item" href="force-ind.html">2. India</a>
+                        <a class="dropdown-item" href="force-usa.html">3. United States</a>
+                        <a class="dropdown-item" href="force-ina.html">4. Indonesia</a>
+                        <a class="dropdown-item" href="force-bra.html">5. Brazil</a>
+                        <a class="dropdown-item" href="force-pak.html">6. Pakistan</a>
+                        <a class="dropdown-item" href="force-nig.html">7. Nigeria</a>
+                        <a class="dropdown-item" href="force-ban.html">8. Bangladesh</a>
+                        <a class="dropdown-item" href="force-rus.html">9. Russia</a>
+                        <a class="dropdown-item" href="force-mex.html">10. Mexico</a>
+                    </ul>
+                </div>
+            </li>
+
+            <!--an about page-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" >About</a>
+                <div class="dropdown-menu" >
+                    <!--use flag icons ??  or insert small thumbnail photo of flag-->
+                    <a class="dropdown-item" href="about-us.html"> Website & Data</a>
+                    <a class="dropdown-item" href="http://geoviz.ceoas.oregonstate.edu/neocarto/"> Neocarto</a>
+                    <a class="dropdown-item" href="https://github.com/jakobzhao/geog4572"> GEOG 4/572 </a>
+                </div>
+            </li>
+        </ul>
+        <!--<nav class="navbar navbar-dark bg-custom">-->
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">-->
+        <!--<span class="navbar-toggler-icon"></span>-->
+        <!--</button>-->
+        <!--</nav>-->
+    </div>
 </nav>
+
+
+
 
 <!--map container-->
 <div id="map" class="map"></div>
