@@ -53,7 +53,7 @@ nav{
     /*width: 23% 300px*/;
     position: absolute;
     z-index: 1000;
-    right: 10px;
+    left: 10px;
     bottom: 2%;
     color: #070707;
     padding: 6px 8px;
