@@ -378,8 +378,6 @@
 
 
 
-
-<div class="clear"></div>
 <div id="graph" class="graph">
     <svg width="800" height="400"></svg>
 </div>
@@ -471,7 +469,7 @@
     // determine the color.md ramp. The number of colors is determined by the number of classes.
     // try different interpolation method lch, lab, hsl
     // var colors = chroma.scale(['yellow', 'navy']).mode('hsl').colors(grades.length);
-    var colors = chroma.scale('YlOrRd').colors(grades.length+1);
+    var colors = chroma.scale(['white', 'black']).colors(grades.length+1);
 
     // get the color.md based on the class which the input value falls in.
     function getColor(d) {
@@ -505,8 +503,9 @@
             weight: 1.5,
             opacity: 1,
             color: 'blue',
+            fillColor: 'orange',
             dashArray: '6',
-            fillOpacity: 0.1
+            fillOpacity: 0.4
         });
         // bring the layer to the front.
         layer.bringToFront();
