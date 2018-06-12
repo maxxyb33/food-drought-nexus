@@ -36,6 +36,51 @@
             background-color: #f5f5f5;
         }
 
+        .graph {
+            line-height: 16px;
+            min-width: 25%; /*290 px*/
+            max-width: 30%;
+            position: absolute;
+            z-index: 2000;
+            right: 10px;
+            bottom: 2%;
+            color: #070707;
+            padding: 6px 8px;
+            background: rgba(243, 243, 243, 0.73);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            border-radius: 5px;
+            text-align: justify;
+            max-height: 80%;
+        }
+
+        .info {
+            z-index: 1000;
+            position: absolute;
+            right: 20px;
+            top: 150px;
+            padding: 6px 8px;
+            font: 14px Arial, Helvetica, sans-serif;
+            text-align: right;
+            background: white;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+
+        .legend {
+            z-index: 1000;
+            /*position: absolute;*/
+            /*right: 20px;*/
+            /*bottom: 100px;*/
+            /*padding: 6px 8px;*/
+            /*font: 14px Arial, Helvetica, sans-serif;*/
+            /*background: white;*/
+            /*background: rgba(255, 255, 255, 0.8);*/
+            /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);*/
+            /*border-radius: 5px;*/
+        }
+
         .info-panel {
             line-height: 16px;
             min-width: 25%; /*290 px*/
@@ -121,11 +166,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.3.4/chroma.min.js"></script>
     <!--<script src="https://unpkg.com/leaflet-swoopy"></script>-->
     <script src="js/Leaflet.SwoopyArrow-customized.js"></script>
     <script src="assets/kits.js"></script>
-    <script src="assets/countrylatlng.js"></script>
 
 </head>
 <body>
@@ -209,11 +256,13 @@
 <!--map container-->
 <div id="map" class="map"></div>
 
+<div class='info'><h1>Population</h1><div class='update'>Hover over a state</div>
+</div>
 
 <!--LEGEND info panel-->
 <div class="info-panel">
     <h1>Food-Drought Nexus</h1>
-    <h6><b> Migrations of Many Major Cereals </b></h6><br/>
+    <h6><b> Migrations of Major Cereals </b></h6><br/>
     <!-- legend patch items -->
     <table style="width:100%">
         <tr>
@@ -249,13 +298,17 @@
                 <p> Drought Map</p></td>
         </tr>
     </table>
+    <br>
+    <h5><b>Population (1000s)</b></h5>
+    <div class="legend"></div>
     <!--place holder-->
     <br/>
     <img src="img/dscale2.png" width="100%">
     <br/>
     <br>
-	<i class="fa fa-share-square" style="font-size:20px;color:#ff3847;"></i><div> <a href="template4_murthy.html">Click</a> on a country to display trade lines, or filter the criteria through the menus, below.</div>
+    <i class="fa fa-share-square" style="font-size:20px;color:#ff3847;"></i><div> Click on a country to display trade lines, or filter the criteria through the menus, below.</div>
     <i class="fa fa-question-circle" style="font-size:20px;color:purple;"></i><div> Are there any trade trends following the progression of underlying Annual Drought maps? </div><br>
+
 
 
 
@@ -325,6 +378,10 @@
 
 
 
+
+<div class="clear"></div>
+<div id="graph" class="graph">
+    <svg width="800" height="400"></svg>
 </div>
 
 
@@ -334,29 +391,21 @@
 
 
 
-
-
-
 <script type="text/javascript">
-
-
-
+    var selected_country =null;
+    //Map code
+    // 1. create the map object and the base layer.
     var map = L.map("map", {zoomControl: false}).fitBounds([
-	    [60, -95],
-	    [-40, 80]
+        [60, -95],
+        [-40, 80]
     ]);
-    // construct a base map in light color.md.
     var layergroup =L.layerGroup().addTo(map);
     L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png').addTo(map);
 
 
-   var drought =  L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI19807_dry/tile_{z}_{x}-{y}.png').addTo(map);
-   var droughtw = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI19807_wet/tile_{z}_{x}-{y}.png').addTo(map);
+    var drought =  L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI19807_dry/tile_{z}_{x}-{y}.png').addTo(map);
+    var droughtw = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI19807_wet/tile_{z}_{x}-{y}.png').addTo(map);
 
-
-
-
-   //COUNTRY selector code may go into Forcegraph JS.
 
 
     $("#year").on("change", function(){
@@ -379,96 +428,302 @@
 
 
     $("#grain").on("change", function(){
-	    layergroup.clearLayers();
-	    var grain = $(this).val();
+        layergroup.clearLayers();
+        var grain = $(this).val();
 
         grain = 40;
-	    for (let i=0;i<kits.features.length;i++) {
+        for (let i=0;i<kits.features.length;i++) {
 
-		    if (kits.features[i].properties.lat > grain) {
+            if (kits.features[i].properties.lat > grain) {
 
-			    lng = kits.features[i].geometry.coordinates[0];
-			    lat = kits.features[i].geometry.coordinates[1];
-
-
-			    layergroup.addLayer( L.swoopyArrow([45.505374, -122.978524], [lat, lng], {
-				    labelFontSize: 12,
-				    iconAnchor: [20, 10],
-				    iconSize: [30, 16],
-				    color: '#ffcd5c',
-				    opacity: 0.7,
-				    weight:'3'
-			    }));
-		    }
+                lng = kits.features[i].geometry.coordinates[0];
+                lat = kits.features[i].geometry.coordinates[1];
 
 
-	    }
+                layergroup.addLayer( L.swoopyArrow([45.505374, -122.978524], [lat, lng], {
+                    labelFontSize: 12,
+                    iconAnchor: [20, 10],
+                    iconSize: [30, 16],
+                    color: '#ffcd5c',
+                    opacity: 0.7,
+                    weight:'3'
+                }));
+            }
 
-	    // layergroup2.addTo(map2);
+
+        }
+
+        // layergroup2.addTo(map2);
 
 // // alert($(this).val());
 // 	    var grain = $(this).val();
 // 	    drought.remove();
 // 	    drought = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI' + year + '2_dry/tile_{z}_{x}-{y}.png');
 // 	    drought.addTo(map);
-
-
-
-
-
     });
 
 
 
-//
+    // 2. Create the chorepleth map with interactive functions.
+    // determine the number of classes and their respective break values.
+    var grades = [0,1000000,5000000,10000000,25000000,50000000,100000000,250000000,500000000,1000000000];
 
+    // determine the color.md ramp. The number of colors is determined by the number of classes.
+    // try different interpolation method lch, lab, hsl
+    // var colors = chroma.scale(['yellow', 'navy']).mode('hsl').colors(grades.length);
+    var colors = chroma.scale('YlOrRd').colors(grades.length+1);
 
-
-
-
-    //hover over countries to highlight
-
-    var countries = null;
-    countries = L.geoJson.ajax("assets/world_simplified.geojson", {
-        style: style,
-        onEachFeature(feature, layer) {
-            layer.on('mouseover', function () {
-                this.setStyle({
-                    'fillColor': '#810f10',
-                    'fillOpacity': .5
-                });
-            });
-            layer.on('mouseout', function () {
-                this.setStyle({
-                    'fillColor': '#FFEDA0',
-                    'fillOpacity': .1
-                });
-            });
-        //     layer.on('click', function () {
-        //         window.location = feature.properties.NAME//URL;
-        //     });
-        },
-        attribution: 'Cereal Data &copy; FAO.gov | Annual July Drought Maps &copy; GIDMaPS | Base Map &copy; Leaflet | 2018'
-    }).addTo(map); //...geojson, ([style: style}].addTo...
-//ADD window.location = function reload arrows for that country.
-
-
-
+    // get the color.md based on the class which the input value falls in.
     function getColor(d) {
-        return d > 1000 ? '#800026' :
-                                    '#FFEDA0';
+        for (var i = 0; i < grades.length - 1; i++) {
+            if ( d > grades[i] && d < grades[i+1] ) return colors[i];
+        }
+        if (d > grades[grades.length - 1]) return colors[grades.length];
     }
 
-
+    // determine the style class based on the input feature
     function style(feature) {
         return {
-            fillColor: getColor(feature.properties.density),
+            weight: 1,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.45,
+            fillColor: getColor(feature.properties.POP2005)
+        };
+    }
+    // 3. add the state layer to the map. Also, this layer has some interactive features.
+    // 3.1 declare an empty/null geojson object
+    var geojson = null;
+
+    // 3.2 interactive features.
+    // 3.2.1 highlight a feature when the mouse hovers on it.
+    function highlightFeature(e) {
+        // e indicates the current event
+        var layer = e.target; //the target capture the object which the event associates with
+        layer.setStyle({
             weight: 1.5,
             opacity: 1,
             color: 'blue',
             dashArray: '6',
             fillOpacity: 0.1
-        };
+        });
+        // bring the layer to the front.
+        layer.bringToFront();
+        // select the update class, and update the contet with the input value.
+        $(".update").html('<b>' + layer.feature.properties.NAME + '</b>   ' + Math.ceil(layer.feature.properties.POP2005/1000000) + ' Million');
+    }
+
+    // 3.2.2 zoom to the highlighted feature when the mouse is clicking onto it.
+    function zoomToFeature(e) {
+        var layer = e.target; //the target capture the object which the event associates with
+        map.fitBounds(e.target.getBounds());
+        selected_country=layer.feature.properties.ISO3;
+        //console.log(selected_country);
+        clear_graph();
+        draw_graph();
+    }
+
+    // 3.2.3 reset the hightlighted feature when the mouse is out of its region.
+    function resetHighlight(e) {
+        geojson.resetStyle(e.target);
+        $(".update").html("Hover over a country");
+    }
+
+    // 3.3 add these event the layer obejct.
+    function onEachFeature(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+          //  click: zoomToFeature,
+            mouseout: resetHighlight
+        });
+    }
+
+    // 3.4 assign the geojson data path, style option and onEachFeature option. And then Add the geojson layer to the map.
+    geojson = L.geoJson.ajax("assets/world_simplified.geojson", {
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+
+    // 4. create the legend
+    var labels = [];
+    for (var i = 0; i < grades.length - 1; i++) {
+        labels.push('<i style="background:' + colors[i] + '"></i> ' + Math.ceil(grades[i]/1000000) + ' - ' + Math.ceil(grades[i + 1]/1000000));
+    }
+    labels.push('<i style="background:' + colors[grades.length - 1] + '"></i> ' + Math.ceil(grades[grades.length - 1]/1000000) + ' +');
+    $(".legend").html(labels.join('<br>'));
+
+    // 5. create the credits
+    map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a> | Cereal Data &copy; FAO.gov | Annual July Drought Maps &copy; GIDMaPS | Base Map &copy; Leaflet | 2018</a>');
+
+
+
+
+
+
+
+
+
+    //Line graph code
+    var svg = d3.select("svg"),
+        margin = {top: 10, right: 25, bottom: 20, left: 25},
+        width = +svg.attr("width") - margin.left - margin.right,
+        height = +svg.attr("height") - margin.top - margin.bottom,
+        g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")").style("font-size","10px");
+    //  var parseTime = d3.timeParse("%d-%b-%y")
+
+    function clear_graph() {
+        svg.selectAll('svg > g > *').remove();
+    }
+
+    function draw_graph() {
+        var graph_data = [];
+        var x = d3.scaleTime()
+            .rangeRound([0, width]);
+
+        var y = d3.scaleLinear()
+            .rangeRound([height, 0]);
+
+        /*    var line = d3.line()
+                 .x(function (d) {
+                     return x(d.year);
+                 })
+                 .y(function (d) {
+                     return y(d.value);
+                 });
+
+      */
+        //3. Read population data from CSV files
+        //Fields: country_code,country,element_code,element,year,unit,value
+        d3.csv("assets/FBS_percapita_data.csv", function (d) {
+            d.element_code = +d.element_code;
+            d.year = +d.year;
+            d.unit = +d.unit;
+            d.value = +d.value;
+            return d;
+        }, function (error, data) {
+            if (error) throw error;
+            console.log(selected_country);
+            for (var i = 0; i < data.length; i++) {
+                if(data[i].country_code==selected_country){
+                    graph_data.push(data[i]);
+                }
+            }
+
+            function DS(year,value){
+                this.year=year;
+                this.value=value;
+            }
+
+            var population = [];
+            var foodsupply =[];
+            var proteinsupply =[];//{year: null,value: null};//proteinsupply.push({year,value});
+            var fatsupply =[];//{year: null,value: null};//fatsupply.push({year,value});
+//Total Population - Both sexes 511
+//Food supply (kcal/capita/day)664
+//Protein supply quantity (g/capita/day) 674
+//Fat supply quantity (g/capita/day) 684
+            //  country_code,country,element_code,element,year,unit,value
+
+
+            for (var i = 0; i < graph_data.length; i++) {
+                if(graph_data[i].element_code==511){
+                    population.push(new DS(graph_data[i].year, graph_data[i].value/1000));
+                }
+                else if (graph_data[i].element_code==664){
+                    foodsupply.push(new DS(graph_data[i].year, graph_data[i].value));
+                }
+                else if (graph_data[i].element_code==674){
+                    proteinsupply.push(new DS(graph_data[i].year,graph_data[i].value*10));
+                }
+                else if (graph_data[i].element_code==684){
+                    fatsupply.push(new DS(graph_data[i].year,graph_data[i].value*10));
+                }
+            }
+
+            x.domain([1960,2015]);
+            y.domain([0,2000]);
+            /*         x.domain(d3.extent(graph_data, function (d) {
+                         return d.year;
+                     }));
+                     y.domain(d3.extent(fatsupply, function (d) {
+                         return d.value;
+                     }));
+          */
+
+            // Define the lines
+            var popline = d3.line()
+                .x(function(d) { return x(d.year); })
+                .y(function(d) { return y(d.value); });
+            var foodline = d3.line()
+                .x(function(d) { return x(d.year); })
+                .y(function(d) { return y(d.value); });
+            var proteinline = d3.line()
+                .x(function(d) { return x(d.year); })
+                .y(function(d) { return y(d.value); });
+            var fatline = d3.line()
+                .x(function(d) { return x(d.year); })
+                .y(function(d) { return y(d.value); });
+
+            g.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x))
+                .select(".domain")
+                .attr("x",10);
+            //.remove();
+            g.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft(y))
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "0.71em")
+                .attr("fill", "#000")
+                .text("Value");
+
+            g.append("path")
+                .datum(foodsupply)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .attr("stroke-width", 2.5)
+                .style("stroke-dasharray", ("3, 3"))
+                .attr("d", foodline);
+
+            g.append("path")
+                .datum(proteinsupply)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .attr("stroke-width", 2.5)
+                .style("stroke", "blue")
+                .attr("d", proteinline)
+                .text("Protein supply (g/capita-day)");
+
+            g.append("path")
+                .datum(fatsupply)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .attr("stroke-width", 2.5)
+                .style("stroke", "green")
+                .attr("d", fatline);
+
+            g.append("path")
+                .datum(population)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-linejoin", "round")
+                .attr("stroke-linecap", "round")
+                .attr("stroke-width", 2.5)
+                .style("stroke", "red")
+                .attr("d", popline);
+
+        });
+
     }
 
 
@@ -476,79 +731,223 @@
 
 
 
-//Need function to pull lat long of countries by selected button name and map-click, to insert into below function.
-    // Add a function to differ line 'weight' (thickness) based on Value (tonnes).
-    // L.swoopyArrow([33, -98], [53.525, 14.41], {
-    //     color: "#ffd100",
-    //     opacity: 0.7,
-    //     weight:'3'
-    // }).addTo(map);
-    //
-    //
-    // for(let i=0; i<kits.features.length; i++) {
-    //
-    //     setTimeout(function () {
-    //         lng = kits.features[i].geometry.coordinates[0];
-    //         lat = kits.features[i].geometry.coordinates[1];
-    //
-    //         L.swoopyArrow([-28, 134], [lat, lng], {
-    //             labelFontSize: 12,
-    //             iconAnchor: [20, 10],
-    //             iconSize: [30, 16],
-    //             color: '#ffd100',
-    //             opacity: 0.7,
-    //             weight:'3'
-    //         }).addTo(map);
-    //         // layergroup2.addLayer( L.marker([lat, lng], {icon: pwbIcon}));
-    //
-    //     }, 100 * i);
-    // }
 
 
-//CONVERT TO GEOJSON when lat longs are added to datasheet, then rename as data.geojson
-//     d3.json('assets/FBS_Country_data.json').then(function(data) {
-//
-//         //////////////////////////////////////////////////PREP THE DATA////////////////////////////////////////////////////////
-//         //create crossfilter passes each feature to the filter. We have to pass it through the crossfilter before we can split up with data using
-//         //the .dimensions() method
-//         var filter = crossfilter(data.features); //passes the features to the crossfilter
-//
-//         // groups everything together into one group, this is used to quickly search all of the data at once
-//         var all = filter.groupAll();
-//
-//
-//         //Takes each of the records of the dataset and returns each individual line so that they can be used. .dimension() puts
-//         // the data into an easily searchable/manipulable format for DC
-//         var everything = filter.dimension(function (d) {
-//             return d
-//         });
-//
-//         //////////////////////////////////////////////SORT THE DATA///////////////////////////////////////////////////////////
-//         //Now that we have our initial data imported and in the right format using crossfilter we now have to sort out the data that we want to display, set up
-//         //the chart space and populate the graphs
-//
-//         //returns the geometry for each feature; this is the points at which each earthquake happened
-//         var geomDimension = filter.dimension(function (d) {
-//             return d.geometry
-//         });
-//
-//         //defines the categories from magnitude property
-//         var valueDimension = filter.dimension(function (d) {
-//
-//             var value = d.properties.value;
-//             valueClass = "> 15";
-//
-//             if (mag <= 6) {
-//                 valueClass = "<6"
-//             } else if (mag > 1.2 && mag <= 15) {
-//                 valueClass = "1-15"
-//             } else {
-//                 valueClass = ">15"
-//             }
-//             return valueClass;
-//         });
-//     })
 
+
+
+
+//
+//
+//
+//     var map = L.map("map", {zoomControl: false}).fitBounds([
+// 	    [60, -95],
+// 	    [-40, 80]
+//     ]);
+//     // construct a base map in light color.md.
+//     var layergroup =L.layerGroup().addTo(map);
+//     L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png').addTo(map);
+//
+//
+//    var drought =  L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI19807_dry/tile_{z}_{x}-{y}.png').addTo(map);
+//    var droughtw = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI19807_wet/tile_{z}_{x}-{y}.png').addTo(map);
+//
+//
+//
+//
+//    //COUNTRY selector code may go into Forcegraph JS.
+//
+//
+//     $("#year").on("change", function(){
+// // alert($(this).val());
+//         var year = $(this).val();
+//         drought.remove();
+//         drought = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI' + year + '7_dry/tile_{z}_{x}-{y}.png');
+//         drought.addTo(map);
+//     });
+//
+//     $("#year").on("change", function(){
+// // alert($(this).val());
+//         var year = $(this).val();
+//         droughtw.remove();
+//         droughtw = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI' + year + '7_wet/tile_{z}_{x}-{y}.png');
+//         droughtw.addTo(map);
+//     });
+//
+//
+//
+//
+//     $("#grain").on("change", function(){
+// 	    layergroup.clearLayers();
+// 	    var grain = $(this).val();
+//
+//         grain = 40;
+// 	    for (let i=0;i<kits.features.length;i++) {
+//
+// 		    if (kits.features[i].properties.lat > grain) {
+//
+// 			    lng = kits.features[i].geometry.coordinates[0];
+// 			    lat = kits.features[i].geometry.coordinates[1];
+//
+//
+// 			    layergroup.addLayer( L.swoopyArrow([45.505374, -122.978524], [lat, lng], {
+// 				    labelFontSize: 12,
+// 				    iconAnchor: [20, 10],
+// 				    iconSize: [30, 16],
+// 				    color: '#ffcd5c',
+// 				    opacity: 0.7,
+// 				    weight:'3'
+// 			    }));
+// 		    }
+//
+//
+// 	    }
+//
+// 	    // layergroup2.addTo(map2);
+//
+// // // alert($(this).val());
+// // 	    var grain = $(this).val();
+// // 	    drought.remove();
+// // 	    drought = L.tileLayer(' http://climate.calit2.uci.edu/MERRA/tile_mercator/SPI' + year + '2_dry/tile_{z}_{x}-{y}.png');
+// // 	    drought.addTo(map);
+//
+//
+//
+//
+//
+//     });
+//
+//
+//
+// //
+//
+//
+//
+//
+//
+//     //hover over countries to highlight
+//
+//     var countries = null;
+//     countries = L.geoJson.ajax("assets/world_simplified.geojson", {
+//         style: style,
+//         onEachFeature(feature, layer) {
+//             layer.on('mouseover', function () {
+//                 this.setStyle({
+//                     'fillColor': '#810f10',
+//                     'fillOpacity': .5
+//                 });
+//             });
+//             layer.on('mouseout', function () {
+//                 this.setStyle({
+//                     'fillColor': '#FFEDA0',
+//                     'fillOpacity': .1
+//                 });
+//             });
+//         //     layer.on('click', function () {
+//         //         window.location = feature.properties.NAME//URL;
+//         //     });
+//         },
+//         attribution: 'Cereal Data &copy; FAO.gov | Annual July Drought Maps &copy; GIDMaPS | Base Map &copy; Leaflet | 2018'
+//     }).addTo(map); //...geojson, ([style: style}].addTo...
+// //ADD window.location = function reload arrows for that country.
+//
+//
+//
+//     function getColor(d) {
+//         return d > 1000 ? '#800026' :
+//                                     '#FFEDA0';
+//     }
+//
+//
+//     function style(feature) {
+//         return {
+//             fillColor: getColor(feature.properties.density),
+//             weight: 1.5,
+//             opacity: 1,
+//             color: 'blue',
+//             dashArray: '6',
+//             fillOpacity: 0.1
+//         };
+//     }
+//
+//
+//
+//
+//
+//
+// //Need function to pull lat long of countries by selected button name and map-click, to insert into below function.
+//     // Add a function to differ line 'weight' (thickness) based on Value (tonnes).
+//     // L.swoopyArrow([33, -98], [53.525, 14.41], {
+//     //     color: "#ffd100",
+//     //     opacity: 0.7,
+//     //     weight:'3'
+//     // }).addTo(map);
+//     //
+//     //
+//     // for(let i=0; i<kits.features.length; i++) {
+//     //
+//     //     setTimeout(function () {
+//     //         lng = kits.features[i].geometry.coordinates[0];
+//     //         lat = kits.features[i].geometry.coordinates[1];
+//     //
+//     //         L.swoopyArrow([-28, 134], [lat, lng], {
+//     //             labelFontSize: 12,
+//     //             iconAnchor: [20, 10],
+//     //             iconSize: [30, 16],
+//     //             color: '#ffd100',
+//     //             opacity: 0.7,
+//     //             weight:'3'
+//     //         }).addTo(map);
+//     //         // layergroup2.addLayer( L.marker([lat, lng], {icon: pwbIcon}));
+//     //
+//     //     }, 100 * i);
+//     // }
+//
+//
+// //CONVERT TO GEOJSON when lat longs are added to datasheet, then rename as data.geojson
+// //     d3.json('assets/FBS_Country_data.json').then(function(data) {
+// //
+// //         //////////////////////////////////////////////////PREP THE DATA////////////////////////////////////////////////////////
+// //         //create crossfilter passes each feature to the filter. We have to pass it through the crossfilter before we can split up with data using
+// //         //the .dimensions() method
+// //         var filter = crossfilter(data.features); //passes the features to the crossfilter
+// //
+// //         // groups everything together into one group, this is used to quickly search all of the data at once
+// //         var all = filter.groupAll();
+// //
+// //
+// //         //Takes each of the records of the dataset and returns each individual line so that they can be used. .dimension() puts
+// //         // the data into an easily searchable/manipulable format for DC
+// //         var everything = filter.dimension(function (d) {
+// //             return d
+// //         });
+// //
+// //         //////////////////////////////////////////////SORT THE DATA///////////////////////////////////////////////////////////
+// //         //Now that we have our initial data imported and in the right format using crossfilter we now have to sort out the data that we want to display, set up
+// //         //the chart space and populate the graphs
+// //
+// //         //returns the geometry for each feature; this is the points at which each earthquake happened
+// //         var geomDimension = filter.dimension(function (d) {
+// //             return d.geometry
+// //         });
+// //
+// //         //defines the categories from magnitude property
+// //         var valueDimension = filter.dimension(function (d) {
+// //
+// //             var value = d.properties.value;
+// //             valueClass = "> 15";
+// //
+// //             if (mag <= 6) {
+// //                 valueClass = "<6"
+// //             } else if (mag > 1.2 && mag <= 15) {
+// //                 valueClass = "1-15"
+// //             } else {
+// //                 valueClass = ">15"
+// //             }
+// //             return valueClass;
+// //         });
+// //     })
+//
 
 
 </script>
